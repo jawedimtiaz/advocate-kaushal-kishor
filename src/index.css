@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Cormorant Garamond', 'Noto Serif Telugu', Georgia, serif;
+    --font-sans: 'Public Sans', 'Noto Sans Telugu', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    color: #0B192C;
+    background-color: #FBFBF9;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  html[lang="te"] body {
+    line-height: 1.75;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  /* 1. Reset Canvas & Ensure Crisp Black-on-White Ink Contrast */
+  html,
+  body,
+  #root,
+  #top {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.45 !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 2. Hide Interactive & Screen-Only Chrome */
+  .no-print,
+  header,
+  nav,
+  button,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  /* 3. Main Document Container & Section Spacing */
+  .print-main {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-section {
+    padding-top: 10pt !important;
+    padding-bottom: 12pt !important;
+    border-bottom: 0.75pt solid #CBD5E1 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-masthead-section {
+    padding-top: 0 !important;
+    padding-bottom: 12pt !important;
+    border-bottom: 1.5pt solid #0B192C !important;
+  }
+
+  .print-masthead {
+    padding: 0 !important;
+    border: none !important;
+    background-color: #FFFFFF !important;
+  }
+
+  .print-masthead-header {
+    padding-bottom: 8pt !important;
+    border-bottom: 0.75pt solid #CBD5E1 !important;
+  }
+
+  .print-masthead-meta {
+    padding-top: 6pt !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    font-size: 9pt !important;
+    color: #1E293B !important;
+  }
+
+  /* 4. Typography & Heading Hierarchy for Physical Printout */
+  h1 {
+    font-size: 22pt !important;
+    line-height: 1.15 !important;
+    color: #000000 !important;
+    margin-top: 2pt !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    line-height: 1.25 !important;
+    color: #000000 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 11.5pt !important;
+    line-height: 1.3 !important;
+    color: #000000 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-size: 11pt !important;
+    color: #000000 !important;
+  }
+
+  .print-section-header {
+    margin-bottom: 8pt !important;
+    padding-bottom: 4pt !important;
+    border-bottom: 0.75pt solid #94A3B8 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .print-section-header p {
+    font-size: 9pt !important;
+    color: #334155 !important;
+    margin-top: 2pt !important;
+  }
+
+  /* 5. Two-Column Ledger Layout for Professional & Enrolment Records */
+  .print-record-list {
+    border-top: 0.75pt solid #94A3B8 !important;
+    border-bottom: 0.75pt solid #94A3B8 !important;
+    background-color: #FFFFFF !important;
+  }
+
+  .print-record-row {
+    display: grid !important;
+    grid-template-columns: 38% 62% !important;
+    column-gap: 14pt !important;
+    align-items: baseline !important;
+    padding: 6.5pt 8pt !important;
+    border-bottom: 0.5pt solid #CBD5E1 !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-record-row:last-child {
+    border-bottom: none !important;
+  }
+
+  .print-record-label {
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
+    margin: 0 !important;
+  }
+
+  .print-record-value {
+    font-size: 10.5pt !important;
+    font-weight: 500 !important;
+    color: #000000 !important;
+    margin: 0 !important;
+  }
+
+  .print-record-value p {
+    font-size: 8.5pt !important;
+    color: #334155 !important;
+    margin-top: 1.5pt !important;
+  }
+
+  /* 6. Court Practice Summary, Practice Areas Grid & Unconfirmed References */
+  .print-summary-box {
+    margin-top: 6pt !important;
+    padding: 8pt 10pt !important;
+    border: 0.75pt solid #94A3B8 !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-practice-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    border-top: 0.75pt solid #94A3B8 !important;
+    border-bottom: 0.75pt solid #94A3B8 !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-practice-card {
+    padding: 8pt 10pt !important;
+    border-top: none !important;
+  }
+
+  .print-practice-card:first-child {
+    border-right: 0.5pt solid #CBD5E1 !important;
+  }
+
+  .print-unconfirmed-box {
+    margin-top: 10pt !important;
+    padding: 8pt 10pt !important;
+    border: 0.75pt dashed #64748B !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-unconfirmed-box li {
+    padding-top: 4pt !important;
+    padding-bottom: 4pt !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* 7. Two-Column Contact Section in Print */
+  .print-contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    border: 0.75pt solid #94A3B8 !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-contact-block {
+    padding: 8pt 10pt !important;
+    border-right: 0.5pt solid #CBD5E1 !important;
+  }
+
+  .print-contact-grid > div > div {
+    padding: 8pt 10pt !important;
+  }
+
+  a[href^="tel:"],
+  a[href^="mailto:"] {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+
+  /* 8. Convert Dark Navy Footer to High-Contrast Ink on White Paper */
+  .print-footer {
+    margin-top: 10pt !important;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border-top: 1.5pt solid #0B192C !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-footer-inner {
+    max-width: 100% !important;
+    padding: 8pt 0 0 0 !important;
+  }
+
+  .print-footer * {
+    color: #000000 !important;
+    border-color: #CBD5E1 !important;
+    background-color: transparent !important;
+  }
+
+  .print-footer-top {
+    padding-bottom: 6pt !important;
+    gap: 8pt !important;
+  }
+
+  .print-footer p,
+  .print-footer span,
+  .print-footer a {
+    font-size: 8.5pt !important;
+    line-height: 1.35 !important;
+    color: #1E293B !important;
+  }
+}
