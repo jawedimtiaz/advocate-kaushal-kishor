@@ -8,10 +8,11 @@ interface HeaderProps {
   content: TranslationContent['nav'];
   onPrint?: () => void;
   printLabel?: string;
+  isPrinting?: boolean;
 }
 
 const TOUCH_OVERLAY_CLASS =
-  "relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md";
+  "relative after:content-[''] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:min-w-[48px] after:min-h-[48px] after:w-full after:h-full after:rounded-md";
 
 export const Header: React.FC<HeaderProps> = ({
   language,
@@ -19,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   content,
   onPrint,
   printLabel = 'Print Information Sheet',
+  isPrinting = false,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -50,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#top"
-          className="font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[155px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
+          className="inline-flex items-center min-h-[48px] font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[155px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
         >
           {content.brandName}
         </a>
@@ -64,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               key={item.href}
               href={item.href}
-              className="py-1.5 text-[#334155] hover:text-[#0B192C] border-b-2 border-transparent hover:border-[#B8964C] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
+              className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] px-3 -mx-1 text-[#334155] hover:text-[#0B192C] border-b-2 border-transparent hover:border-[#B8964C] transition-colors whitespace-nowrap shrink-0 relative after:content-[''] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:min-w-[48px] after:min-h-[48px] after:w-full after:h-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
             >
               {item.label}
             </a>
@@ -83,7 +85,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('en')}
               aria-pressed={language === 'en'}
               lang="en"
-              className={`${TOUCH_OVERLAY_CLASS} min-h-[44px] min-w-[44px] px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} min-h-[48px] min-w-[48px] px-3.5 py-2 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'en'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -96,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('te')}
               aria-pressed={language === 'te'}
               lang="te"
-              className={`${TOUCH_OVERLAY_CLASS} min-h-[44px] min-w-[44px] px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} min-h-[48px] min-w-[48px] px-3.5 py-2 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'te'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -110,12 +112,23 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               onClick={onPrint}
+              disabled={isPrinting}
+              aria-busy={isPrinting}
               aria-label={printLabel}
               title={printLabel}
-              className={`${TOUCH_OVERLAY_CLASS} inline-flex items-center justify-center gap-1.5 min-h-[44px] min-w-[44px] px-3 py-1.5 rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F1F5F9] text-xs font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
+              className={`${TOUCH_OVERLAY_CLASS} group inline-flex items-center justify-center gap-2 min-h-[48px] min-w-[48px] px-3.5 py-2 rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F8FAFC] hover:border-[#B8964C]/70 hover:shadow-xs hover:scale-105 active:bg-[#F1F5F9] active:scale-[0.98] text-xs font-medium transition-all transition-transform duration-150 ease-out whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] cursor-pointer disabled:opacity-80 disabled:pointer-events-none`}
             >
-              <Printer className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span className="hidden lg:inline">{printLabel}</span>
+              <Printer
+                className={`w-4 h-4 shrink-0 transition-transform duration-150 ease-out ${
+                  isPrinting
+                    ? 'text-[#B8964C] animate-pulse'
+                    : 'text-[#475569] group-hover:text-[#785C22] group-hover:scale-110'
+                }`}
+                aria-hidden="true"
+              />
+              <span className="hidden lg:inline group-hover:text-[#0B192C] transition-colors duration-150">
+                {printLabel}
+              </span>
             </button>
           )}
 
@@ -125,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
             aria-label={mobileMenuOpen ? content.mobileMenuClose : content.mobileMenuOpen}
-            className={`${TOUCH_OVERLAY_CLASS} md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
+            className={`${TOUCH_OVERLAY_CLASS} md:hidden inline-flex items-center justify-center min-w-[48px] min-h-[48px] w-12 h-12 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -144,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
               key={item.href}
               href={item.href}
               onClick={handleNavClick}
-              className="block py-3 px-3 text-sm font-medium text-[#0B192C] hover:bg-[#F1F5F9] rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-[#B8964C]"
+              className="flex items-center min-h-[48px] py-3 px-3 text-sm font-medium text-[#0B192C] hover:bg-[#F1F5F9] rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-[#B8964C]"
             >
               {item.label}
             </a>

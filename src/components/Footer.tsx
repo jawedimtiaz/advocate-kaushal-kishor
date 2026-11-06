@@ -1,15 +1,18 @@
 import React from 'react';
 import { TranslationContent } from '../data/translations';
+import { PrivacyPolicyLink } from './PrivacyPolicyLink';
 
 interface FooterProps {
   content: TranslationContent['footer'];
   contact: TranslationContent['contactSection'];
+  privacyPolicy: TranslationContent['privacyPolicy'];
   onOpenRegulatoryModal: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   content,
   contact,
+  privacyPolicy,
   onOpenRegulatoryModal,
 }) => {
   const currentUrl =
@@ -103,9 +106,15 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
         </div>
 
-        {/* Bottom Row: Copyright Year */}
+        {/* Bottom Row: Copyright Year & Privacy Policy */}
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#CBD5E1]">
-          <p>{content.copyright}</p>
+          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
+            <p>{content.copyright}</p>
+            <span aria-hidden="true" className="hidden sm:inline text-[#475569]">
+              ·
+            </span>
+            <PrivacyPolicyLink content={privacyPolicy} />
+          </div>
           <p className="text-[#94A3B8] max-w-md sm:text-right">
             {content.shortAddress}
           </p>

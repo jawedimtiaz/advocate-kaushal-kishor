@@ -16,6 +16,7 @@ export interface TranslationContent {
     langName: string;
     pageTitle: string;
     skipToContent: string;
+    scrollToTop: string;
     previewBannerTitle: string;
     previewBannerText: string;
   };
@@ -31,6 +32,9 @@ export interface TranslationContent {
     languageLabel: string;
     mobileMenuOpen: string;
     mobileMenuClose: string;
+    breadcrumbAriaLabel: string;
+    breadcrumbHome: string;
+    breadcrumbOverview: string;
   };
   hero: {
     documentType: string;
@@ -40,6 +44,8 @@ export interface TranslationContent {
     location: string;
     ComplianceReference: string;
     printRecordButton: string;
+    printingOverlayTitle: string;
+    printingOverlaySubtitle: string;
     regulatoryNoticeButton: string;
   };
   professionalSection: {
@@ -136,6 +142,16 @@ export interface TranslationContent {
     placeholderSummaryTitle: string;
     placeholderSummaryItems: string[];
   };
+  privacyPolicy: {
+    linkText: string;
+    modalTitle: string;
+    modalSubtitle: string;
+    closeButton: string;
+    sections: {
+      heading: string;
+      body: string;
+    }[];
+  };
 }
 
 export const translations: Record<Language, TranslationContent> = {
@@ -145,6 +161,7 @@ export const translations: Record<Language, TranslationContent> = {
       langName: 'English',
       pageTitle: 'Advocate Kaushal Kishor, M.Sc., LL.B. | Gajuwaka, Visakhapatnam',
       skipToContent: 'Skip to main content',
+      scrollToTop: 'Scroll to top of document',
       previewBannerTitle: 'Development Preview — Subject to Verification & Approval',
       previewBannerText:
         'Publication is subject to applicable professional rules and final confirmation of remaining unverified references.',
@@ -161,6 +178,9 @@ export const translations: Record<Language, TranslationContent> = {
       languageLabel: 'Select language',
       mobileMenuOpen: 'Open navigation menu',
       mobileMenuClose: 'Close navigation menu',
+      breadcrumbAriaLabel: 'Breadcrumb trail',
+      breadcrumbHome: 'Chambers Directory',
+      breadcrumbOverview: 'Identity & Standing',
     },
     hero: {
       documentType: 'Factual Professional Information Profile',
@@ -171,6 +191,8 @@ export const translations: Record<Language, TranslationContent> = {
       ComplianceReference:
         'Publication is subject to applicable professional rules and required approvals',
       printRecordButton: 'Print Information Sheet',
+      printingOverlayTitle: 'Preparing Print Document...',
+      printingOverlaySubtitle: 'Formatting official chamber record for printing...',
       regulatoryNoticeButton: 'Regulatory Notice',
     },
     professionalSection: {
@@ -394,6 +416,35 @@ export const translations: Record<Language, TranslationContent> = {
         'High Court of Andhra Pradesh: Not presented as a membership or affiliation; nature of association pending confirmation.',
       ],
     },
+    privacyPolicy: {
+      linkText: 'Privacy Policy',
+      modalTitle: 'Privacy Statement & Data Protection Notice',
+      modalSubtitle:
+        'Standard statutory statement on website privacy, communication confidentiality, and information handling.',
+      closeButton: 'Close Privacy Notice',
+      sections: [
+        {
+          heading: '1. Information Handling & Collection',
+          body: 'This website is structured solely as a factual professional information directory in compliance with Rule 36 of the Bar Council of India Rules. We do not use commercial tracking cookies, automated web telemetry, third-party analytics trackers, or targeted advertising scripts. Personal information is only received when a visitor voluntarily contacts the chamber via email, telephone, or postal mail.',
+        },
+        {
+          heading: '2. Professional Advocate-Client Confidentiality',
+          body: 'Any factual communications, case briefs, and documents shared with Advocate Kaushal Kishor for the purpose of seeking legal counsel are protected under statutory professional privilege as recognized under Section 126 of the Indian Evidence Act, 1872 (and corresponding provisions of the Bharatiya Sakshya Adhiniyam, 2023). Unsolicited transmissions do not automatically create an advocate-client relationship until mutually agreed.',
+        },
+        {
+          heading: '3. Non-Disclosure & Third-Party Sharing',
+          body: 'The Chambers of Advocate Kaushal Kishor does not sell, rent, license, or commercially disclose client or visitor contact information to any third parties, brokers, or marketing intermediaries under any circumstances.',
+        },
+        {
+          heading: '4. Data Security & Record Retention',
+          body: 'All physical case briefs and electronic communications are handled in accordance with strict confidentiality protocols applicable to advocates. Necessary security measures are implemented to protect client records against unauthorized access, loss, or disclosure.',
+        },
+        {
+          heading: '5. Inquiries & Chamber Contact',
+          body: 'For any questions or clarification regarding this privacy statement, please contact the Chambers of Advocate Kaushal Kishor directly at Chinnagantyada, Gajuwaka, Visakhapatnam, Andhra Pradesh 530026, or via telephone at +91-9885037796.',
+        },
+      ],
+    },
   },
   te: {
     meta: {
@@ -401,6 +452,7 @@ export const translations: Record<Language, TranslationContent> = {
       langName: 'తెలుగు',
       pageTitle: 'న్యాయవాది కౌశల్ కిషోర్, M.Sc., LL.B. | గాజువాక, విశాఖపట్నం',
       skipToContent: 'ప్రధాన సమాచారానికి వెళ్లండి',
+      scrollToTop: 'పేజీ పైకి వెళ్లండి',
       previewBannerTitle: 'డెవలప్‌మెంట్ ప్రివ్యూ — ధృవీకరణ మరియు ఆమోదానికి లోబడి ఉంటుంది',
       previewBannerText:
         'ఈ వెబ్‌సైట్ ప్రచురణ వర్తించే వృత్తిపరమైన నిబంధనలు మరియు మిగిలిన అంశాల తుది నిర్ధారణకు లోబడి ఉంటుంది.',
@@ -417,6 +469,9 @@ export const translations: Record<Language, TranslationContent> = {
       languageLabel: 'భాషను ఎంచుకోండి',
       mobileMenuOpen: 'నావిగేషన్ మెనూ తెరవండి',
       mobileMenuClose: 'నావిగేషన్ మెనూ మూసివేయండి',
+      breadcrumbAriaLabel: 'బ్రెడ్‌క్రంబ్ నావిగేషన్',
+      breadcrumbHome: 'ఛాంబర్స్ డైరెక్టరీ',
+      breadcrumbOverview: 'గుర్తింపు మరియు అర్హతలు',
     },
     hero: {
       documentType: 'వాస్తవిక వృత్తిపరమైన సమాచార ప్రొఫైల్',
@@ -427,6 +482,8 @@ export const translations: Record<Language, TranslationContent> = {
       ComplianceReference:
         'ఈ సమాచార ప్రచురణ వర్తించే వృత్తిపరమైన నిబంధనలు మరియు అవసరమైన ఆమోదాలకు లోబడి ఉంటుంది',
       printRecordButton: 'సమాచార పత్రం ప్రింట్',
+      printingOverlayTitle: 'ప్రింట్ సిద్ధం అవుతోంది...',
+      printingOverlaySubtitle: 'ముద్రణ కోసం అధికారిక పత్రం రూపొందించబడుతోంది...',
       regulatoryNoticeButton: 'నిబంధనల గమనిక',
     },
     professionalSection: {
@@ -652,6 +709,35 @@ export const translations: Record<Language, TranslationContent> = {
         'విశాఖపట్నం బార్ కౌన్సిల్ (Visakhapatnam Bar Council): విశాఖపట్నం జిల్లా కోర్టు ప్రాక్టీస్‌కు సంబంధించి ప్రస్తావించబడింది; ఖచ్చితమైన అధికారిక సంస్థ పేరు నిర్ధారణ పెండింగ్‌లో ఉంది.',
         'గాజువాక బార్ కౌన్సిల్ (Gajuwaka Bar Council): ధృవీకరించబడిన సభ్యత్వంగా చూపబడలేదు; అధికారిక సంస్థ పేరు మరియు అనుబంధ స్వభావం నిర్ధారణ పెండింగ్‌లో ఉంది.',
         'ఆంధ్రప్రదేశ్ హైకోర్టు (High Court of Andhra Pradesh): సభ్యత్వంగా లేదా అనుబంధంగా చూపబడలేదు; సంబంధ స్వభావం నిర్ధారణ పెండింగ్‌లో ఉంది.',
+      ],
+    },
+    privacyPolicy: {
+      linkText: 'గోప్యతా విధానం (Privacy Policy)',
+      modalTitle: 'గోప్యతా ప్రకటన మరియు సమాచార రక్షణ నోటీసు',
+      modalSubtitle:
+        'వెబ్‌సైట్ సమాచార నిర్వహణ మరియు న్యాయవాది-క్లయింట్ గోప్యతా రక్షణపై అధికారిక ప్రకటన.',
+      closeButton: 'నోటీసు మూసివేయండి',
+      sections: [
+        {
+          heading: '1. సమాచార సేకరణ మరియు నిర్వహణ',
+          body: 'ఈ వెబ్‌సైట్ బార్ కౌన్సిల్ ఆఫ్ ఇండియా రూల్స్ లోని రూల్ 36 ప్రకారం కేవలం వాస్తవిక సమాచార ప్రొఫైల్‌గా నిర్వహించబడుతోంది. మేము ఎటువంటి ట్రాకింగ్ కుకీలు, థర్డ్-పార్టీ అనలిటిక్స్ లేదా ప్రకటనల స్క్రిప్ట్‌లను ఉపయోగించము. వినియోగదారులు నేరుగా ఇమెయిల్ లేదా ఫోన్ ద్వారా సంప్రదించినప్పుడు మాత్రమే సమాచారం స్వీకరించబడుతుంది.',
+        },
+        {
+          heading: '2. న్యాయవాది-క్లయింట్ గోప్యతా హక్కు (Privilege)',
+          body: 'న్యాయ సలహా నిమిత్తం న్యాయవాది కౌశల్ కిషోర్‌తో పంచుకున్న పత్రాలు మరియు సంప్రదింపులు భారతీయ సాక్ష్య చట్టం ప్రకారం చట్టబద్ధమైన గోప్యతా పరిధిలోకి వస్తాయి. అనుమతి లేకుండా సమాచారం పంపడం ద్వారా మాత్రమే న్యాయవాది-క్లయింట్ సంబంధం ఏర్పడదు.',
+        },
+        {
+          heading: '3. సమాచార భద్రత మరియు వాణిజ్య రహిత విధానం',
+          body: 'న్యాయవాది కార్యాలయం సందర్శకుల లేదా క్లయింట్ల సమాచారాన్ని ఏవిధమైన వాణిజ్య ప్రకటనల సంస్థలకు లేదా మూడవ పక్షాలకు విక్రయించదు లేదా బదిలీ చేయదు.',
+        },
+        {
+          heading: '4. రికార్డుల భద్రత & నిల్వ',
+          body: 'అన్ని భౌతిక మరియు ఎలక్ట్రానిక్ సంప్రదింపులు న్యాయవాదులకు వర్తించే కఠినమైన గోప్యతా నిబంధనల ప్రకారం భద్రపరచబడతాయి.',
+        },
+        {
+          heading: '5. విచారణలు మరియు సంప్రదింపులు',
+          body: 'ఈ గోప్యతా విధానంపై సందేహాలు లేదా స్పష్టత కోసం న్యాయవాది కౌశల్ కిషోర్ కార్యాలయం, చైతన్య నగర్, చినగంట్యాడ, గాజువాక, విశాఖపట్నం, ఫోన్: +91-9885037796 ద్వారా సంప్రదించవచ్చు.',
+        },
       ],
     },
   },

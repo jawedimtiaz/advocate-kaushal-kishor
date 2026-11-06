@@ -4,9 +4,10 @@
  */
 
 import { useEffect, useState } from 'react';
-import { Printer } from 'lucide-react';
+import { ArrowUp, Printer } from 'lucide-react';
 import { Language, translations } from './data/translations';
 import { Header } from './components/Header';
+import { BreadcrumbNav, BreadcrumbSection } from './components/BreadcrumbNav';
 import { SectionHeader } from './components/SectionHeader';
 import { DefinitionRecordList } from './components/DefinitionRecordList';
 import { ContactSection } from './components/ContactSection';
@@ -46,8 +47,66 @@ export default function App() {
   });
 
   const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
+  const [isPrinting, setIsPrinting] = useState<boolean>(false);
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+  const [activeSectionId, setActiveSectionId] = useState<string>('masthead-info');
 
   const t = translations[language];
+
+  useEffect(() => {
+    const sectionIds = [
+      'masthead-info',
+      'professional-info',
+      'enrolment-info',
+      'areas-of-practice',
+      'contact-info',
+    ];
+
+    const handleScroll = () => {
+      const masthead = document.getElementById('masthead-info');
+      if (masthead) {
+        const rect = masthead.getBoundingClientRect();
+        // Appears once the user scrolls beyond the first section (#masthead-info)
+        setShowScrollTop(rect.bottom < 64);
+      } else {
+        setShowScrollTop(window.scrollY > 350);
+      }
+
+      // Track active section for breadcrumb navigation
+      const scrollPosition = window.scrollY + 140;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && scrollPosition >= el.offsetTop) {
+          setActiveSectionId(sectionIds[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollToTop = () => {
+    try {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  useEffect(() => {
+    const handleAfterPrint = () => {
+      setIsPrinting(false);
+    };
+    window.addEventListener('afterprint', handleAfterPrint);
+    return () => window.removeEventListener('afterprint', handleAfterPrint);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -118,6 +177,7 @@ export default function App() {
   };
 
   const handlePrint = () => {
+    setIsPrinting(true);
     const stampEl = document.getElementById('print-generated-stamp');
     if (stampEl) {
       const now = new Date();
@@ -132,7 +192,17 @@ export default function App() {
       stampEl.textContent = updatedStamp;
       stampEl.setAttribute('data-generated-on', updatedStamp);
     }
-    window.print();
+
+    // Defer window.print slightly to allow the UI to render the 'Printing...' feedback overlay
+    window.setTimeout(() => {
+      try {
+        window.print();
+      } finally {
+        window.setTimeout(() => {
+          setIsPrinting(false);
+        }, 1200);
+      }
+    }, 120);
   };
 
   return (
@@ -171,13 +241,29 @@ export default function App() {
         content={t.nav}
         onPrint={handlePrint}
         printLabel={t.hero.printRecordButton}
+        isPrinting={isPrinting}
+      />
+
+      {/* Discreet Breadcrumb Navigation */}
+      <BreadcrumbNav
+        homeLabel={t.nav.breadcrumbHome}
+        brandName={t.hero.name}
+        activeSectionId={activeSectionId}
+        ariaLabel={t.nav.breadcrumbAriaLabel}
+        sections={[
+          { id: 'masthead-info', label: t.nav.breadcrumbOverview },
+          { id: 'professional-info', label: t.professionalSection.title },
+          { id: 'enrolment-info', label: t.enrolmentSection.title },
+          { id: 'areas-of-practice', label: t.practiceSection.title },
+          { id: 'contact-info', label: t.contactSection.title },
+        ]}
       />
 
       {/* Main Content Container */}
       <main
         id="main-content"
         tabIndex={-1}
-        className="print-main main-dossier-container flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12 sm:border-x sm:border-[#CBD5E1]/80 focus:outline-none"
+        className="print-main print-compact-layout main-dossier-container flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12 sm:border-x sm:border-[#CBD5E1]/80 focus:outline-none"
       >
         {/* Institutional Identity Masthead */}
         <section
@@ -217,10 +303,15 @@ export default function App() {
                 <button
                   type="button"
                   onClick={handlePrint}
-                  className="relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] min-w-[44px] sm:min-h-[40px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+                  disabled={isPrinting}
+                  aria-busy={isPrinting}
+                  className="relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] min-w-[44px] sm:min-h-[40px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] disabled:opacity-80 disabled:pointer-events-none"
                 >
-                  <Printer className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>{t.hero.printRecordButton}</span>
+                  <Printer
+                    className={`w-3.5 h-3.5 ${isPrinting ? 'animate-pulse text-[#B8964C]' : ''}`}
+                    aria-hidden="true"
+                  />
+                  <span>{isPrinting ? t.hero.printingOverlayTitle : t.hero.printRecordButton}</span>
                 </button>
               </div>
             </div>
@@ -378,8 +469,32 @@ export default function App() {
       <Footer
         content={t.footer}
         contact={t.contactSection}
+        privacyPolicy={t.privacyPolicy}
         onOpenRegulatoryModal={() => setIsRegulatoryModalOpen(true)}
       />
+
+      {/* Subtle 'Printing...' Visual Feedback Overlay */}
+      {isPrinting && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="no-print fixed inset-0 z-50 flex items-center justify-center bg-[#0B192C]/40 backdrop-blur-[2px] p-4 transition-opacity duration-200 animate-in fade-in"
+        >
+          <div className="bg-[#FAF9F5] border border-[#CBD5E1] shadow-2xl rounded-lg p-5 sm:p-6 max-w-sm w-full mx-auto flex items-center gap-4 text-[#0B192C]">
+            <div className="w-11 h-11 rounded-full bg-[#0B192C] flex items-center justify-center shrink-0 text-[#B8964C] shadow-sm">
+              <Printer className="w-5 h-5 animate-pulse" aria-hidden="true" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-semibold text-sm text-[#0B192C] tracking-tight">
+                {t.hero.printingOverlayTitle}
+              </p>
+              <p className="text-xs text-[#475569] mt-0.5 truncate">
+                {t.hero.printingOverlaySubtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Regulatory & BCI Rule 36 Entrance / Review Modal */}
       <RegulatoryModal
@@ -391,6 +506,24 @@ export default function App() {
         language={language}
         onLanguageChange={setLanguage}
       />
+
+      {/* Discreet, Low-Profile 'Scroll to Top' Button */}
+      <button
+        type="button"
+        onClick={handleScrollToTop}
+        aria-label={t.meta.scrollToTop}
+        title={t.meta.scrollToTop}
+        className={`no-print fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-30 group inline-flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full bg-white/95 text-[#334155] hover:text-[#0B192C] hover:bg-white border border-[#CBD5E1] hover:border-[#B8964C] shadow-sm hover:shadow-md backdrop-blur-xs transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] cursor-pointer ${
+          showScrollTop
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-3 pointer-events-none'
+        }`}
+      >
+        <ArrowUp
+          className="w-4 h-4 text-[#334155] group-hover:text-[#785C22] group-hover:-translate-y-0.5 transition-all duration-150 ease-out"
+          aria-hidden="true"
+        />
+      </button>
     </div>
   );
 }
