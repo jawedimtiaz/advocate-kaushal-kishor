@@ -14,6 +14,7 @@ import { SpecializationsTags } from './components/SpecializationsTags';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { RegulatoryModal } from './components/RegulatoryModal';
+import { FloatingLanguageSwitcher } from './components/FloatingLanguageSwitcher';
 
 const LANGUAGE_STORAGE_KEY = 'advocate_kk_language_pref';
 const BCI_DISCLAIMER_STORAGE_KEY = 'bci_disclaimer_accepted';
@@ -556,6 +557,17 @@ export default function App() {
         content={t.modal}
         language={language}
         onLanguageChange={setLanguage}
+      />
+
+      {/* Floating Minimalist Bottom-Left Language Switcher */}
+      <FloatingLanguageSwitcher
+        language={language}
+        onLanguageChange={setLanguage}
+        languageLabel={t.nav.languageLabel}
+        switcherEnActive={t.nav.languageSwitcherEnActive}
+        switcherEnInactive={t.nav.languageSwitcherEnInactive}
+        switcherTeActive={t.nav.languageSwitcherTeActive}
+        switcherTeInactive={t.nav.languageSwitcherTeInactive}
       />
 
       {/* Discreet, Low-Profile 'Scroll to Top' Button */}

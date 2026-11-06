@@ -39,6 +39,9 @@ export interface TranslationContent {
     breadcrumbAriaLabel: string;
     breadcrumbHome: string;
     breadcrumbOverview: string;
+    shareLabel: string;
+    shareSuccess: string;
+    shareTitle: string;
   };
   hero: {
     documentType: string;
@@ -202,6 +205,9 @@ export const translations: Record<Language, TranslationContent> = {
       breadcrumbAriaLabel: 'Breadcrumb trail',
       breadcrumbHome: 'Chambers Directory',
       breadcrumbOverview: 'Identity & Standing',
+      shareLabel: 'Share',
+      shareSuccess: 'Copied!',
+      shareTitle: 'Advocate Kaushal Kishor, M.Sc., LL.B. — Chambers Profile',
     },
     hero: {
       documentType: 'Factual Professional Information Profile',
@@ -525,6 +531,9 @@ export const translations: Record<Language, TranslationContent> = {
       breadcrumbAriaLabel: 'బ్రెడ్‌క్రంబ్ నావిగేషన్',
       breadcrumbHome: 'ఛాంబర్స్ డైరెక్టరీ',
       breadcrumbOverview: 'గుర్తింపు మరియు అర్హతలు',
+      shareLabel: 'షేర్ చేయండి',
+      shareSuccess: 'కాపీ చేయబడింది!',
+      shareTitle: 'న్యాయవాది కౌశల్ కిషోర్, M.Sc., LL.B. — ప్రొఫెషనల్ ప్రొఫైల్',
     },
     hero: {
       documentType: 'వాస్తవిక వృత్తిపరమైన సమాచార ప్రొఫైల్',

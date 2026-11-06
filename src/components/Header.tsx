@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, Printer, X } from 'lucide-react';
+import { Check, Menu, Printer, Share2, X } from 'lucide-react';
 import { Language, TranslationContent } from '../data/translations';
 
 interface HeaderProps {
@@ -23,6 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
   isPrinting = false,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const navItems = [
     { href: '#professional-info', label: content.professional },
@@ -46,8 +47,56 @@ export const Header: React.FC<HeaderProps> = ({
     setMobileMenuOpen(false);
   };
 
+  const copyToClipboard = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(window.location.href);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = window.location.href;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback failed silently
+    }
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: content.shareTitle || document.title,
+      text: `${content.brandName} (${content.brandQualification}) — Official Chambers Profile`,
+      url: window.location.href,
+    };
+
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name !== 'AbortError') {
+          copyToClipboard();
+        }
+      }
+    } else {
+      copyToClipboard();
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-[#FBFBF9]/95 backdrop-blur-sm border-b border-[#E2E8F0] no-print">
+      {/* Screen Reader Live Region for Share Feedback */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {copied ? content.shareSuccess : ''}
+      </div>
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-8">
         {/* Zone 1: Single text element wordmark */}
         <a
@@ -74,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({
           ))}
         </nav>
 
-        {/* Zone 3: Bilingual Segmented Language Control, Print Action & Mobile Toggle */}
+        {/* Zone 3: Bilingual Segmented Language Control, Share Action, Print Action & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div
             role="group"
@@ -118,6 +167,30 @@ export const Header: React.FC<HeaderProps> = ({
               తెలుగు
             </button>
           </div>
+
+          {/* Web Share Action Button */}
+          <button
+            type="button"
+            onClick={handleShare}
+            aria-label={copied ? content.shareSuccess : content.shareLabel}
+            title={copied ? content.shareSuccess : content.shareLabel}
+            className={`${TOUCH_OVERLAY_CLASS} group relative inline-flex items-center justify-center gap-2 min-h-[48px] min-w-[48px] px-3.5 py-2 rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F8FAFC] hover:border-[#B8964C]/70 hover:shadow-xs hover:scale-105 active:bg-[#F1F5F9] active:scale-[0.98] text-xs font-medium transition-all transition-transform duration-150 ease-out whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] cursor-pointer`}
+          >
+            {copied ? (
+              <Check
+                className="w-4 h-4 shrink-0 text-emerald-600 animate-in zoom-in-75 duration-200"
+                aria-hidden="true"
+              />
+            ) : (
+              <Share2
+                className="w-4 h-4 shrink-0 text-[#475569] group-hover:text-[#785C22] group-hover:scale-110 transition-transform duration-150 ease-out"
+                aria-hidden="true"
+              />
+            )}
+            <span className="hidden sm:inline group-hover:text-[#0B192C] transition-colors duration-150">
+              {copied ? content.shareSuccess : content.shareLabel}
+            </span>
+          </button>
 
           {onPrint && (
             <button
@@ -173,6 +246,20 @@ export const Header: React.FC<HeaderProps> = ({
               {item.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              handleNavClick();
+              handleShare();
+            }}
+            className="flex items-center justify-between w-full min-h-[48px] py-3 px-3 text-sm font-medium text-[#0B192C] hover:bg-[#F1F5F9] rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-[#B8964C] cursor-pointer"
+          >
+            <span className="flex items-center gap-2">
+              <Share2 className="w-4 h-4 text-[#785C22]" />
+              {copied ? content.shareSuccess : content.shareLabel}
+            </span>
+            {copied && <Check className="w-4 h-4 text-emerald-600" />}
+          </button>
         </nav>
       )}
     </header>
