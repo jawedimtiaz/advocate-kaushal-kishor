@@ -123,7 +123,7 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
         </div>
 
-        {/* Bottom Row: Copyright Year & Privacy Policy */}
+        {/* Bottom Row: Copyright Year, Privacy Policy & Last Updated Timestamp */}
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#CBD5E1]">
           <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
             <p>{content.copyright}</p>
@@ -131,6 +131,12 @@ export const Footer: React.FC<FooterProps> = ({
               ·
             </span>
             <PrivacyPolicyLink content={privacyPolicy} />
+            <span aria-hidden="true" className="hidden sm:inline text-[#475569]">
+              ·
+            </span>
+            <span className="font-mono-tabular text-[#CBD5E1]/90">
+              {content.lastUpdatedLabel} {new Intl.DateTimeFormat('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date())}
+            </span>
           </div>
           <p className="text-[#94A3B8] max-w-md sm:text-right">
             {content.shortAddress}

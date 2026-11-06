@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Copy, ExternalLink } from 'lucide-react';
+import { Check, Clock, Copy, ExternalLink, Languages, ShieldCheck } from 'lucide-react';
 import { RecordItem, TranslationContent } from '../data/translations';
 import { SectionHeader } from './SectionHeader';
 import { DefinitionRecordList } from './DefinitionRecordList';
@@ -198,19 +198,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </div>
             </div>
           </div>
-
-          {/* Chamber Hours & Availability / Prior Appointment Note */}
-          <div className="p-6 sm:p-8 bg-[#FBFBF9]">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#475569]">
-              {content.chamberHoursLabel}
-            </h3>
-            <p className="mt-2 font-mono-tabular text-sm sm:text-base font-medium text-[#0B192C]">
-              {content.chamberHoursValue}
-            </p>
-            <p className="mt-2 border-l-2 border-[#785C22] pl-3 text-xs sm:text-sm font-medium text-[#334155] leading-relaxed">
-              {content.appointmentNotice}
-            </p>
-          </div>
         </div>
       </div>
 
@@ -229,16 +216,58 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         />
       </div>
 
-      {/* Chamber Hours & Languages Handled Definition Rows */}
-      <div className="mt-8 border border-[#E2E8F0] bg-white">
-        <DefinitionRecordList items={contactDefinitionItems} className="border-t-0 border-b-0" />
-      </div>
+      {/* Dedicated Visually Distinct Container: Chamber Hours, Languages & Professional Policies */}
+      <div className="print-summary-box mt-8 border border-[#CBD5E1] bg-[#FAF9F5] divide-y divide-[#E2E8F0] shadow-xs">
+        {/* Container Header */}
+        <div className="p-5 sm:p-6 bg-[#0B192C] text-white flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <ShieldCheck className="w-5 h-5 text-[#D4B46A] shrink-0" aria-hidden="true" />
+            <h3 className="font-display text-lg sm:text-xl font-semibold tracking-tight text-white">
+              {content.policiesContainerTitle}
+            </h3>
+          </div>
+          <span className="text-xs font-mono-tabular uppercase tracking-wider text-[#D4B46A] hidden sm:inline font-medium">
+            {content.policiesBadgeLabel}
+          </span>
+        </div>
 
-      {/* Statutory Privilege & Confidentiality Disclaimer */}
-      <div className="print-confidentiality-box mt-6 border-l-2 border-[#785C22] bg-[#FBFBF9] border border-[#CBD5E1] p-5 sm:p-6">
-        <p className="text-xs sm:text-sm font-medium text-[#0B192C] leading-relaxed">
-          {content.confidentialityNotice}
-        </p>
+        {/* 1. Chamber / Office Hours & Availability Block */}
+        <div className="p-6 sm:p-7 space-y-3 bg-white">
+          <div className="flex items-center gap-2 text-[#785C22] font-semibold text-xs uppercase tracking-wider">
+            <Clock className="w-4 h-4 shrink-0 text-[#785C22]" aria-hidden="true" />
+            <span>{content.chamberHoursLabel}</span>
+          </div>
+          <p className="font-mono-tabular text-sm sm:text-base font-medium text-[#0B192C] leading-relaxed">
+            {content.chamberHoursValue}
+          </p>
+          <div className="border-l-2 border-[#785C22] pl-3.5 py-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-r">
+            <p className="text-xs sm:text-sm font-medium text-[#334155] leading-relaxed">
+              {content.appointmentNotice}
+            </p>
+          </div>
+        </div>
+
+        {/* 2. Languages Handled Block */}
+        <div className="p-6 sm:p-7 space-y-2 bg-[#FBFBF9]">
+          <div className="flex items-center gap-2 text-[#785C22] font-semibold text-xs uppercase tracking-wider">
+            <Languages className="w-4 h-4 shrink-0 text-[#785C22]" aria-hidden="true" />
+            <span>{content.languagesLabel}</span>
+          </div>
+          <p className="text-sm sm:text-base font-medium text-[#0B192C]">
+            {content.languagesValue}
+          </p>
+        </div>
+
+        {/* 3. Statutory Privilege & Confidentiality Notice Block */}
+        <div className="print-confidentiality-box p-6 sm:p-7 bg-white space-y-2">
+          <div className="flex items-center gap-2 text-[#0B192C] font-semibold text-xs uppercase tracking-wider">
+            <ShieldCheck className="w-4 h-4 text-[#785C22] shrink-0" aria-hidden="true" />
+            <span>{content.confidentialityNoticeTitle}</span>
+          </div>
+          <p className="text-xs sm:text-sm font-medium text-[#1E293B] leading-relaxed">
+            {content.confidentialityNotice}
+          </p>
+        </div>
       </div>
 
       <p className="mt-4 text-xs text-[#475569] leading-relaxed">

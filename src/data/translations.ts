@@ -116,6 +116,8 @@ export interface TranslationContent {
     languagesValue: string;
     confidentialityNoticeTitle: string;
     confidentialityNotice: string;
+    policiesContainerTitle: string;
+    policiesBadgeLabel: string;
     viewOnMapLabel: string;
     viewOnMapAriaLabel: string;
     mapsUrl: string;
@@ -142,6 +144,7 @@ export interface TranslationContent {
     developmentNotice: string;
     copyright: string;
     reviewRule36Button: string;
+    lastUpdatedLabel: string;
   };
   modal: {
     title: string;
@@ -395,6 +398,9 @@ export const translations: Record<Language, TranslationContent> = {
       confidentialityNoticeTitle: 'Notice on Confidentiality & Advocate-Client Privilege',
       confidentialityNotice:
         'Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship.',
+      policiesContainerTitle:
+        'Chamber Operations, Practice Languages & Professional Policies',
+      policiesBadgeLabel: 'Statutory Standing & Terms',
       viewOnMapLabel: 'View Chamber Location on Google Maps',
       viewOnMapAriaLabel: 'View Chamber Location on Google Maps (opens in a new tab)',
       mapsUrl:
@@ -427,6 +433,7 @@ export const translations: Record<Language, TranslationContent> = {
         'Regulatory & Publication Notice: Publication of this website is subject to applicable professional rules (including Rule 36 of the Bar Council of India Rules) and required client/regulatory approvals. This preview does not claim Bar Council approval or legal certification.',
       copyright: `© ${new Date().getFullYear()} Advocate Kaushal Kishor. Factual Information Profile.`,
       reviewRule36Button: 'View Full Regulatory Notice',
+      lastUpdatedLabel: 'Last updated:',
     },
     modal: {
       title: 'Regulatory Notice & Clarification Disclosure',
@@ -710,6 +717,9 @@ export const translations: Record<Language, TranslationContent> = {
       confidentialityNoticeTitle: 'గోప్యతా ప్రకటన & న్యాయవాది-కక్షిదారుల హక్కు (Confidentiality & Privilege)',
       confidentialityNotice:
         'గోప్యతా ప్రకటన (Notice on Confidentiality): న్యాయవాది-కక్షిదారుల చట్టబద్ధమైన హక్కు ప్రకారం పంచుకోబడిన అన్ని సంప్రదింపులు మరియు పత్రాలు పూర్తిగా గోప్యంగా ఉంచబడతాయి. ముందస్తు అంగీకారం లేకుండా సమాచారాన్ని పంపడం వలన న్యాయవాది-కక్షిదారుల సంబంధం ఏర్పడదు (Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship).',
+      policiesContainerTitle:
+        'ఛాంబర్ నిర్వహణ, భాషలు & నియమావళి (Chamber Operations & Policies)',
+      policiesBadgeLabel: 'చట్టబద్ధమైన నిబంధనలు',
       viewOnMapLabel: 'గూగుల్ మ్యాప్స్‌లో కార్యాలయ స్థానాన్ని చూడండి (View Chamber Location on Google Maps)',
       viewOnMapAriaLabel: 'గూగుల్ మ్యాప్స్‌లో కార్యాలయ స్థానాన్ని చూడండి (కొత్త ట్యాబ్‌లో తెరవబడుతుంది)',
       mapsUrl:
@@ -742,6 +752,7 @@ export const translations: Record<Language, TranslationContent> = {
         'నిబంధనలు & ప్రచురణ గమనిక: ఈ వెబ్‌సైట్ ప్రచురణ వర్తించే వృత్తిపరమైన నిబంధనలు (బార్ కౌన్సిల్ ఆఫ్ ఇండియా నిబంధన 36 తో సహా) మరియు అవసరమైన ఆమోదాలకు లోబడి ఉంటుంది. ఈ డెవలప్‌మెంట్ ప్రివ్యూ బార్ కౌన్సిల్ ఆమోదం పొందినట్లుగానీ, చట్టపరంగా ధృవీకరించబడినట్లుగానీ పేర్కొనడం లేదు.',
       copyright: `© ${new Date().getFullYear()} న్యాయవాది కౌశల్ కిషోర్. వాస్తవిక సమాచార ప్రొఫైల్.`,
       reviewRule36Button: 'పూర్తి నిబంధనల గమనికను చూడండి',
+      lastUpdatedLabel: 'చివరిగా నవీకరించబడింది:',
     },
     modal: {
       title: 'నిబంధనల గమనిక & వివరణ ప్రకటన',

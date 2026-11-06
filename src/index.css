@@ -170,8 +170,8 @@
     background-image: none !important;
     box-shadow: none !important;
     color: #000000 !important;
-    font-size: 10.5pt !important;
-    line-height: 1.45 !important;
+    font-size: 11.5pt !important;
+    line-height: 1.6 !important;
     overflow: visible !important;
     min-height: auto !important;
     -webkit-print-color-adjust: exact;
@@ -355,10 +355,10 @@
   .print-record-label,
   dt.print-record-label,
   .print-record-label * {
-    font-size: 10pt !important;
-    font-weight: 700 !important;
+    font-size: 10.5pt !important;
+    font-weight: 800 !important;
     line-height: 1.35 !important;
-    letter-spacing: 0.01em !important;
+    letter-spacing: 0.015em !important;
     color: #000000 !important;
     opacity: 1 !important;
     margin: 0 !important;
@@ -370,16 +370,26 @@
   }
 
   .print-record-value {
-    font-size: 10.5pt !important;
+    font-size: 11pt !important;
     font-weight: 500 !important;
     color: #000000 !important;
     margin: 0 !important;
+    line-height: 1.6 !important;
   }
 
   .print-record-value p {
     font-size: 8.5pt !important;
     color: #334155 !important;
     margin-top: 1.5pt !important;
+    line-height: 1.6 !important;
+  }
+
+  p,
+  dd,
+  dt,
+  li,
+  address {
+    line-height: 1.6 !important;
   }
 
   /* 6. Court Practice Summary, Practice Areas Grid & Unconfirmed References */
