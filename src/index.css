@@ -10,7 +10,7 @@
   html {
     font-family: var(--font-sans);
     color: #0B192C;
-    background-color: #FBFBF9;
+    background-color: #F3F4F1;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
@@ -31,6 +31,21 @@
   .font-mono-tabular {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Subtle outer archival backdrop vs. elevated main dossier sheet */
+  .page-backdrop {
+    background-color: #F3F4F1;
+    background-image: radial-gradient(rgba(15, 23, 42, 0.055) 0.75px, transparent 0.75px);
+    background-size: 20px 20px;
+  }
+
+  .main-dossier-container {
+    background-color: #FBFBF9;
+    background-image:
+      linear-gradient(to right, rgba(11, 25, 44, 0.016) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 25, 44, 0.016) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 }
 
@@ -55,8 +70,11 @@
   html,
   body,
   #root,
-  #top {
+  #top,
+  .page-backdrop,
+  .main-dossier-container {
     background-color: #FFFFFF !important;
+    background-image: none !important;
     color: #000000 !important;
     font-size: 10.5pt !important;
     line-height: 1.45 !important;
@@ -81,6 +99,7 @@
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    border: none !important;
   }
 
   .print-section {

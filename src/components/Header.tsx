@@ -65,21 +65,21 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Zone 3: Bilingual Segmented Language Control + Mobile Toggle */}
-        <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-3 shrink-0">
           <div
             role="group"
             aria-label={content.languageLabel}
-            className="inline-flex items-center p-0.5 bg-[#F1F5F9] border border-[#CBD5E1] rounded-md"
+            className="inline-flex items-center gap-1 p-1 bg-[#F1F5F9] border border-[#CBD5E1] rounded-md"
           >
             <button
               type="button"
               onClick={() => onLanguageChange('en')}
               aria-pressed={language === 'en'}
               lang="en"
-              className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[36px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`relative after:content-[''] after:absolute after:-inset-y-2 after:-inset-x-0.5 sm:after:-inset-y-1 px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[40px] sm:min-h-[36px] inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'en'
                   ? 'bg-[#0B192C] text-white shadow-xs'
-                  : 'text-[#334155] hover:text-[#0B192C]'
+                  : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
               }`}
             >
               English
@@ -89,10 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('te')}
               aria-pressed={language === 'te'}
               lang="te"
-              className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[36px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`relative after:content-[''] after:absolute after:-inset-y-2 after:-inset-x-0.5 sm:after:-inset-y-1 px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[40px] sm:min-h-[36px] inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'te'
                   ? 'bg-[#0B192C] text-white shadow-xs'
-                  : 'text-[#334155] hover:text-[#0B192C]'
+                  : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
               }`}
             >
               తెలుగు
@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
             aria-label={mobileMenuOpen ? content.mobileMenuClose : content.mobileMenuOpen}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+            className="relative after:content-[''] after:absolute after:-inset-1.5 md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

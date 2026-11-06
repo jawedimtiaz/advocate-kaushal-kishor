@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenRegulatoryModal,
 }) => {
   return (
-    <footer className="print-footer bg-[#0B192C] text-[#F8FAFC] border-t-2 border-[#B8964C]/50 mt-16">
+    <footer className="print-footer bg-[#0B192C] text-[#F8FAFC] border-t-2 border-[#B8964C]/50">
       <div className="print-footer-inner max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Top Row: Advocate Identity & Factual Contact Particulars */}
         <div className="print-footer-top grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#1E293B]">

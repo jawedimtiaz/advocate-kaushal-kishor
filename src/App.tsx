@@ -47,7 +47,7 @@ export default function App() {
   };
 
   return (
-    <div id="top" className="min-h-screen flex flex-col bg-[#FBFBF9] text-[#0B192C]">
+    <div id="top" className="page-backdrop min-h-screen flex flex-col text-[#0B192C]">
       {/* Keyboard Skip-to-Content Link */}
       <a
         href="#main-content"
@@ -86,7 +86,7 @@ export default function App() {
       <main
         id="main-content"
         tabIndex={-1}
-        className="print-main flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 focus:outline-none"
+        className="print-main main-dossier-container flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12 sm:border-x sm:border-[#CBD5E1]/80 focus:outline-none"
       >
         {/* Institutional Identity Masthead */}
         <section
@@ -114,18 +114,18 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 no-print">
+              <div className="flex flex-wrap items-center gap-3.5 no-print">
                 <button
                   type="button"
                   onClick={() => setIsRegulatoryModalOpen(true)}
-                  className="px-4 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+                  className="relative after:content-[''] after:absolute after:-inset-2 sm:after:-inset-1 px-4 py-2.5 sm:py-2 min-h-[44px] sm:min-h-[40px] inline-flex items-center justify-center text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   {t.hero.regulatoryNoticeButton}
                 </button>
                 <button
                   type="button"
                   onClick={handlePrint}
-                  className="inline-flex items-center gap-2 px-4 py-2 min-h-[38px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+                  className="relative after:content-[''] after:absolute after:-inset-2 sm:after:-inset-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] sm:min-h-[40px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   <Printer className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{t.hero.printRecordButton}</span>
