@@ -10,6 +10,7 @@ import { Header } from './components/Header';
 import { BreadcrumbNav, BreadcrumbSection } from './components/BreadcrumbNav';
 import { SectionHeader } from './components/SectionHeader';
 import { DefinitionRecordList } from './components/DefinitionRecordList';
+import { SpecializationsTags } from './components/SpecializationsTags';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { RegulatoryModal } from './components/RegulatoryModal';
@@ -335,6 +336,9 @@ export default function App() {
           </div>
         </section>
 
+        {/* Decorative Section Divider */}
+        <div className="section-divider-line no-print" aria-hidden="true" />
+
         {/* Section 2: Professional Information */}
         <section
           id="professional-info"
@@ -348,7 +352,16 @@ export default function App() {
             subtitle={t.professionalSection.subtitle}
           />
           <DefinitionRecordList items={t.professionalSection.fields} />
+
+          <SpecializationsTags
+            title={t.professionalSection.specializationsTitle}
+            subtitle={t.professionalSection.specializationsSubtitle}
+            items={t.professionalSection.specializationsItems}
+          />
         </section>
+
+        {/* Decorative Section Divider */}
+        <div className="section-divider-line no-print" aria-hidden="true" />
 
         {/* Section 3: Enrolment Information */}
         <section
@@ -402,6 +415,9 @@ export default function App() {
             </p>
           </div>
         </section>
+
+        {/* Decorative Section Divider */}
+        <div className="section-divider-line no-print" aria-hidden="true" />
 
         {/* Section 4: Court Practice, Representation & Areas of Practice */}
         <section
@@ -467,6 +483,9 @@ export default function App() {
             {t.practiceSection.complianceNote}
           </p>
         </section>
+
+        {/* Decorative Section Divider */}
+        <div className="section-divider-line no-print" aria-hidden="true" />
 
         {/* Section 5: Contact Information */}
         <ContactSection

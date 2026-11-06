@@ -58,6 +58,9 @@ export interface TranslationContent {
     subtitle: string;
     verifiedStatusText: string;
     fields: RecordItem[];
+    specializationsTitle: string;
+    specializationsSubtitle: string;
+    specializationsItems: { id: string; name: string; secondaryName?: string }[];
   };
   enrolmentSection: {
     index: string;
@@ -259,6 +262,14 @@ export const translations: Record<Language, TranslationContent> = {
           value: 'Telugu, English, Hindi',
           isPlaceholder: false,
         },
+      ],
+      specializationsTitle: 'Primary Areas of Practice',
+      specializationsSubtitle:
+        'Confirmed areas of legal practice handled at Visakhapatnam District Court and regional jurisdictions:',
+      specializationsItems: [
+        { id: 'family-law', name: 'Family Law', secondaryName: 'Domestic & Family Matters' },
+        { id: 'criminal-law', name: 'Criminal Law', secondaryName: 'Criminal Defense & Trial Practice' },
+        { id: 'civil-litigation', name: 'Civil Litigation', secondaryName: 'Civil Disputes & Property Matters' },
       ],
     },
     enrolmentSection: {
@@ -574,6 +585,14 @@ export const translations: Record<Language, TranslationContent> = {
           value: 'తెలుగు, ఇంగ్లీష్, హిందీ (Telugu, English, Hindi)',
           isPlaceholder: false,
         },
+      ],
+      specializationsTitle: 'ప్రధాన ప్రాక్టీస్ రంగాలు (Primary Practice Areas)',
+      specializationsSubtitle:
+        'విశాఖపట్నం జిల్లా కోర్టు మరియు ప్రాంతీయ పరిధిలో వ్యవహరించే నిర్ధారిత ప్రాక్టీస్ రంగాలు:',
+      specializationsItems: [
+        { id: 'family-law', name: 'కుటుంబ న్యాయం', secondaryName: 'Family Law' },
+        { id: 'criminal-law', name: 'క్రిమినల్ న్యాయం', secondaryName: 'Criminal Law' },
+        { id: 'civil-litigation', name: 'సివిల్ దావాలు', secondaryName: 'Civil Litigation' },
       ],
     },
     enrolmentSection: {

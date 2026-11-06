@@ -87,6 +87,43 @@
   animation-fill-mode: forwards;
 }
 
+/* Subtle horizontal decorative divider line between main sections */
+.section-divider-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.section-divider-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(203, 213, 225, 0.7) 15%,
+    rgba(184, 150, 76, 0.5) 50%,
+    rgba(203, 213, 225, 0.7) 85%,
+    transparent 100%
+  );
+}
+
+.section-divider-line::after {
+  content: '◆';
+  position: relative;
+  z-index: 10;
+  padding: 0 0.75rem;
+  font-size: 0.5rem;
+  color: #B8964C;
+  background-color: #FAF9F5;
+  opacity: 0.85;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,

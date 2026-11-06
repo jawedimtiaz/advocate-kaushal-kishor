@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Clock, Copy, ExternalLink, Languages, ShieldCheck } from 'lucide-react';
+import { Check, Clock, Copy, ExternalLink, Languages, MapPin, ShieldCheck } from 'lucide-react';
 import { RecordItem, TranslationContent } from '../data/translations';
 import { SectionHeader } from './SectionHeader';
 import { DefinitionRecordList } from './DefinitionRecordList';
@@ -58,7 +58,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         subtitle={content.subtitle}
       />
 
-      <div className="print-contact-grid grid grid-cols-1 lg:grid-cols-12 border border-[#E2E8F0] bg-white divide-y lg:divide-y-0 lg:divide-x divide-[#E2E8F0]">
+      <div className="print-contact-grid grid grid-cols-1 lg:grid-cols-12 border border-[#E2E8F0] hover:border-[#CBD5E1] bg-white divide-y lg:divide-y-0 lg:divide-x divide-[#E2E8F0] shadow-xs hover:shadow-md transition-all duration-300 ease-out">
         {/* Office Address Block */}
         <div className="print-contact-block lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between">
           <div>
@@ -101,18 +101,38 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </button>
             </div>
 
-            <div className="pt-1">
-              <a
-                href={content.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={content.viewOnMapAriaLabel}
-                className="no-print inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#785C22] hover:text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
-              >
-                <span>{content.viewOnMapLabel}</span>
-                <span className="sr-only"> ({content.opensInNewTab})</span>
-                <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#785C22]" aria-hidden="true" />
-              </a>
+            {/* Static Map Snippet with Pin & Fallback Link (Hidden in Print) */}
+            <div className="pt-2 no-print">
+              <div className="relative w-full h-44 sm:h-48 bg-[#E2E8F0] border border-[#CBD5E1] rounded overflow-hidden group">
+                <iframe
+                  title="Advocate Kaushal Kishor Office Location Map"
+                  src="https://maps.google.com/maps?q=Chinnagantyada,+Gajuwaka,+Visakhapatnam,+Andhra+Pradesh+530026&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full border-0 grayscale-[20%] contrast-[105%] group-hover:grayscale-0 transition-all duration-300 pointer-events-auto"
+                  loading="lazy"
+                  aria-label="Map showing Advocate Kaushal Kishor's office location in Gajuwaka"
+                />
+
+                {/* Pin Overlay Badge */}
+                <div className="absolute top-2.5 left-2.5 bg-[#0B192C]/90 text-white backdrop-blur-xs px-2.5 py-1 rounded text-[11px] font-medium flex items-center gap-1.5 shadow-md pointer-events-none">
+                  <MapPin className="w-3.5 h-3.5 text-[#B8964C] shrink-0" aria-hidden="true" />
+                  <span>Gajuwaka Chamber Pin</span>
+                </div>
+
+                {/* Fallback View on Google Maps Link Badge */}
+                <div className="absolute bottom-2.5 right-2.5">
+                  <a
+                    href={content.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={content.viewOnMapAriaLabel}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0B192C] bg-white/95 hover:bg-white border border-[#CBD5E1] hover:border-[#B8964C] rounded shadow-md backdrop-blur-xs transition-all duration-150 focus-visible:outline-2 focus-visible:outline-[#B8964C]"
+                  >
+                    <span>{content.viewOnMapLabel}</span>
+                    <span className="sr-only"> ({content.opensInNewTab})</span>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#785C22]" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -217,7 +237,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       </div>
 
       {/* Dedicated Visually Distinct Container: Chamber Hours, Languages & Professional Policies */}
-      <div className="print-summary-box mt-8 border border-[#CBD5E1] bg-[#FAF9F5] divide-y divide-[#E2E8F0] shadow-xs">
+      <div className="print-summary-box mt-8 border border-[#CBD5E1] bg-[#FAF9F5] divide-y divide-[#E2E8F0] shadow-xs hover:shadow-md transition-shadow duration-300 ease-out">
         {/* Container Header */}
         <div className="p-5 sm:p-6 bg-[#0B192C] text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
