@@ -15,6 +15,7 @@ export interface TranslationContent {
     langCode: Language;
     langName: string;
     pageTitle: string;
+    description: string;
     skipToContent: string;
     previewBannerTitle: string;
     previewBannerText: string;
@@ -130,6 +131,7 @@ export const translations: Record<Language, TranslationContent> = {
       langCode: 'en',
       langName: 'English',
       pageTitle: 'Advocate Kaushal Kishor, M.Sc., LL.B. | Gajuwaka, Visakhapatnam',
+      description: 'Factual professional directory and enrolment information for Advocate Kaushal Kishor (M.Sc., LL.B.), located in Gajuwaka, Visakhapatnam, Andhra Pradesh, India.',
       skipToContent: 'Skip to main content',
       previewBannerTitle: 'Development Preview — Subject to Verification & Approval',
       previewBannerText:
@@ -358,6 +360,7 @@ export const translations: Record<Language, TranslationContent> = {
       langCode: 'te',
       langName: 'తెలుగు',
       pageTitle: 'న్యాయవాది కౌశల్ కిషోర్, M.Sc., LL.B. | గాజువాక, విశాఖపట్నం',
+      description: 'గాజువాక, విశాఖపట్నంలో ఉన్న న్యాయవాది కౌశల్ కిషోర్ (M.Sc., LL.B.) వృత్తిపరమైన వివరాలు మరియు న్యాయవాది నమోదు సమాచారం.',
       skipToContent: 'ప్రధాన సమాచారానికి వెళ్లండి',
       previewBannerTitle: 'డెవలప్‌మెంట్ ప్రివ్యూ — ధృవీకరణ మరియు ఆమోదానికి లోబడి ఉంటుంది',
       previewBannerText:
