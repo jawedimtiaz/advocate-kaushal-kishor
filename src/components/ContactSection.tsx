@@ -3,6 +3,7 @@ import { Check, Copy, ExternalLink } from 'lucide-react';
 import { RecordItem, TranslationContent } from '../data/translations';
 import { SectionHeader } from './SectionHeader';
 import { DefinitionRecordList } from './DefinitionRecordList';
+import { ContactQRCode } from './ContactQRCode';
 
 interface ContactSectionProps {
   content: TranslationContent['contactSection'];
@@ -211,6 +212,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Digital vCard QR Code Card (Hidden in Print) */}
+      <div className="mt-8 no-print">
+        <ContactQRCode
+          className="no-print"
+          name="Advocate Kaushal Kishor"
+          phone={content.phoneValue}
+          email={content.emailValue}
+          address={content.addressSingleLine}
+          title={content.qrTitle}
+          subtitle={content.qrSubtitle}
+          downloadLabel={content.downloadVCard}
+          ariaLabel={content.qrAriaLabel}
+        />
       </div>
 
       {/* Chamber Hours & Languages Handled Definition Rows */}

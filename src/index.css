@@ -228,8 +228,9 @@
     padding-bottom: 7pt !important;
   }
 
-  .print-compact-layout .print-section-header {
-    margin-bottom: 5pt !important;
+  .print-compact-layout .print-section-header,
+  .print-compact-layout .print-section .print-section-header {
+    margin-bottom: 7pt !important;
     padding-bottom: 3pt !important;
   }
 
@@ -307,8 +308,9 @@
     color: #000000 !important;
   }
 
-  .print-section-header {
-    margin-bottom: 8pt !important;
+  .print-section-header,
+  .print-section .print-section-header {
+    margin-bottom: 11pt !important;
     padding-bottom: 4pt !important;
     border-bottom: 0.75pt solid #94A3B8 !important;
     break-after: avoid;
@@ -544,9 +546,11 @@
     flex-wrap: wrap !important;
     gap: 6pt 12pt !important;
     margin-top: 10pt !important;
-    padding: 5pt 8pt !important;
+    padding: 5pt 8pt 7pt 8pt !important;
+    padding-bottom: 7pt !important;
     border: 0.75pt solid #0B192C !important;
     border-top: 1.5pt solid #0B192C !important;
+    border-bottom: 0.75pt solid #0B192C !important;
     background-color: #FFFFFF !important;
     font-family: var(--font-mono) !important;
     font-size: 8pt !important;

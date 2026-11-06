@@ -126,6 +126,10 @@ export interface TranslationContent {
     directEmailLabel: string;
     copiedAriaLabel: string;
     opensInNewTab: string;
+    qrTitle: string;
+    qrSubtitle: string;
+    downloadVCard: string;
+    qrAriaLabel: string;
     noSolicitationNotice: string;
   };
   footer: {
@@ -230,6 +234,14 @@ export const translations: Record<Language, TranslationContent> = {
           value: 'M.Sc., LL.B.',
           secondaryValue: 'Master of Science; Bachelor of Laws',
           isPlaceholder: false,
+        },
+        {
+          id: 'experience',
+          label: 'Years of Experience',
+          value: '5+ Years of Standing / Practice',
+          secondaryValue: 'Enrolled in 2020 (State Bar Council Enrolment No: 1255/2020)',
+          isPlaceholder: false,
+          isMono: true,
         },
         {
           id: 'location',
@@ -394,6 +406,11 @@ export const translations: Record<Language, TranslationContent> = {
       directEmailLabel: 'Email',
       copiedAriaLabel: 'Copied to clipboard',
       opensInNewTab: 'opens in a new tab',
+      qrTitle: 'Scan to Save Digital Contact Card (vCard)',
+      qrSubtitle:
+        'Point your smartphone camera at this QR code to quickly add Advocate Kaushal Kishor directly to your device contacts.',
+      downloadVCard: 'Download Contact Card (.vcf)',
+      qrAriaLabel: "QR code linking to Advocate Kaushal Kishor's vCard contact details",
       noSolicitationNotice:
         'This section provides factual contact details only. No online consultation booking, appointment scheduling, or lead-generation forms are operated on this website.',
     },
@@ -528,6 +545,14 @@ export const translations: Record<Language, TranslationContent> = {
           value: 'M.Sc., LL.B.',
           secondaryValue: 'ఎం.ఎస్సీ., ఎల్.ఎల్.బి.',
           isPlaceholder: false,
+        },
+        {
+          id: 'experience',
+          label: 'అనుభవం (Years of Experience)',
+          value: '5+ సంవత్సరాల ప్రాక్టీస్ (5+ Years of Practice)',
+          secondaryValue: '2020లో స్టేట్ బార్ కౌన్సిల్ నమోదు నుండి (నమోదు సంఖ్య: 1255/2020)',
+          isPlaceholder: false,
+          isMono: true,
         },
         {
           id: 'location',
@@ -696,6 +721,11 @@ export const translations: Record<Language, TranslationContent> = {
       directEmailLabel: 'ఈమెయిల్ పంపండి',
       copiedAriaLabel: 'క్లిప్‌బోర్డ్‌కి కాపీ చేయబడింది',
       opensInNewTab: 'కొత్త ట్యాబ్‌లో తెరవబడుతుంది',
+      qrTitle: 'డిజిటల్ సంప్రదింపు కార్డ్ (vCard) సేవ్ చేయడానికి స్కాన్ చేయండి',
+      qrSubtitle:
+        'న్యాయవాది కౌశల్ కిషోర్ సంప్రదింపు వివరాలను మీ ఫోన్‌లో సులభంగా సేవ్ చేసుకోవడానికి స్మార్ట్‌ఫోన్ కెమెరాతో ఈ క్యూఆర్ కోడ్‌ను స్కాన్ చేయండి.',
+      downloadVCard: 'సంప్రదింపు కార్డ్ డౌన్‌లోడ్ చేయండి (.vcf)',
+      qrAriaLabel: 'న్యాయవాది కౌశల్ కిషోర్ vCard సంప్రదింపు వివరాల క్యూఆర్ కోడ్',
       noSolicitationNotice:
         'ఈ విభాగం కేవలం వాస్తవిక సంప్రదింపు వివరాలను మాత్రమే అందిస్తుంది. ఆన్‌లైన్ అపాయింట్‌మెంట్ బుకింగ్ లేదా సంప్రదింపు ఫారమ్‌లు ఇందులో లేవు.',
     },

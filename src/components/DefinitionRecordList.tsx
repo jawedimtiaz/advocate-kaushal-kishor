@@ -1,4 +1,5 @@
 import React from 'react';
+import { Award } from 'lucide-react';
 import { RecordItem } from '../data/translations';
 
 interface DefinitionRecordListProps {
@@ -25,7 +26,10 @@ export const DefinitionRecordList: React.FC<DefinitionRecordListProps> = ({
             {item.label}
           </dt>
           <dd className="print-record-value mt-1.5 sm:mt-0 sm:col-span-7 text-base text-[#0B192C] break-words">
-            <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              {item.id === 'experience' && (
+                <Award className="w-4 h-4 text-[#785C22] shrink-0 no-print" aria-hidden="true" />
+              )}
               <span
                 className={`${
                   item.isMono
