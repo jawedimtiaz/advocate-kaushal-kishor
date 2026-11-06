@@ -35,6 +35,20 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = t.meta.pageTitle;
+
+    // Keep search and social metadata aligned with the selected page language.
+    const metadata = [
+      ['meta[name="description"]', t.meta.description],
+      ['meta[property="og:title"]', t.meta.pageTitle],
+      ['meta[property="og:description"]', t.meta.description],
+      ['meta[name="twitter:title"]', t.meta.pageTitle],
+      ['meta[name="twitter:description"]', t.meta.description],
+    ] as const;
+
+    metadata.forEach(([selector, content]) => {
+      const element = document.querySelector<HTMLMetaElement>(selector);
+      if (element) element.content = content;
+    });
     try {
       window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
     } catch {
