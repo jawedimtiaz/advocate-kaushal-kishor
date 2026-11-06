@@ -14,6 +14,7 @@ import { Footer } from './components/Footer';
 import { RegulatoryModal } from './components/RegulatoryModal';
 
 const LANGUAGE_STORAGE_KEY = 'advocate_kk_language_pref';
+const BCI_DISCLAIMER_STORAGE_KEY = 'bci_disclaimer_accepted';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => {
@@ -28,7 +29,21 @@ export default function App() {
     return 'en';
   });
 
-  const [isRegulatoryModalOpen, setIsRegulatoryModalOpen] = useState(false);
+  const [hasAcceptedDisclaimer, setHasAcceptedDisclaimer] = useState<boolean>(() => {
+    try {
+      return window.localStorage.getItem(BCI_DISCLAIMER_STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const [isRegulatoryModalOpen, setIsRegulatoryModalOpen] = useState<boolean>(() => {
+    try {
+      return window.localStorage.getItem(BCI_DISCLAIMER_STORAGE_KEY) !== 'true';
+    } catch {
+      return true;
+    }
+  });
 
   const t = translations[language];
 
@@ -41,6 +56,16 @@ export default function App() {
       // Ignore storage access errors
     }
   }, [language, t.meta.pageTitle]);
+
+  const handleAcceptDisclaimer = () => {
+    try {
+      window.localStorage.setItem(BCI_DISCLAIMER_STORAGE_KEY, 'true');
+    } catch {
+      // Ignore storage access errors
+    }
+    setHasAcceptedDisclaimer(true);
+    setIsRegulatoryModalOpen(false);
+  };
 
   const handlePrint = () => {
     window.print();
@@ -80,6 +105,8 @@ export default function App() {
         language={language}
         onLanguageChange={setLanguage}
         content={t.nav}
+        onPrint={handlePrint}
+        printLabel={t.hero.printRecordButton}
       />
 
       {/* Main Content Container */}
@@ -118,14 +145,14 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setIsRegulatoryModalOpen(true)}
-                  className="relative after:content-[''] after:absolute after:-inset-2 sm:after:-inset-1 px-4 py-2.5 sm:py-2 min-h-[44px] sm:min-h-[40px] inline-flex items-center justify-center text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+                  className="relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md px-4 py-2.5 sm:py-2 min-h-[44px] min-w-[44px] sm:min-h-[40px] inline-flex items-center justify-center text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   {t.hero.regulatoryNoticeButton}
                 </button>
                 <button
                   type="button"
                   onClick={handlePrint}
-                  className="relative after:content-[''] after:absolute after:-inset-2 sm:after:-inset-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] sm:min-h-[40px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+                  className="relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 min-h-[44px] min-w-[44px] sm:min-h-[40px] text-xs font-medium text-white bg-[#0B192C] hover:bg-[#1E293B] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   <Printer className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{t.hero.printRecordButton}</span>
@@ -199,6 +226,13 @@ export default function App() {
 
             <p className="mt-4 pt-4 border-t border-dashed border-[#CBD5E1] text-xs text-[#475569] leading-relaxed">
               {t.enrolmentSection.unconfirmedReferencesDisclaimer}
+            </p>
+          </div>
+
+          {/* Statutory Declaration of Truth */}
+          <div className="print-declaration-box mt-6 border-l-2 border-[#785C22] bg-white border border-[#E2E8F0] p-5 sm:p-6">
+            <p className="text-xs sm:text-sm font-medium text-[#0B192C] leading-relaxed">
+              {t.enrolmentSection.statutoryDeclaration}
             </p>
           </div>
         </section>
@@ -279,11 +313,15 @@ export default function App() {
         onOpenRegulatoryModal={() => setIsRegulatoryModalOpen(true)}
       />
 
-      {/* Regulatory & Placeholder Review Modal */}
+      {/* Regulatory & BCI Rule 36 Entrance / Review Modal */}
       <RegulatoryModal
-        isOpen={isRegulatoryModalOpen}
+        isOpen={!hasAcceptedDisclaimer || isRegulatoryModalOpen}
+        isMandatoryEntrance={!hasAcceptedDisclaimer}
+        onAccept={handleAcceptDisclaimer}
         onClose={() => setIsRegulatoryModalOpen(false)}
         content={t.modal}
+        language={language}
+        onLanguageChange={setLanguage}
       />
     </div>
   );

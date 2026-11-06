@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, Printer, X } from 'lucide-react';
 import { Language, TranslationContent } from '../data/translations';
 
 interface HeaderProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   content: TranslationContent['nav'];
+  onPrint?: () => void;
+  printLabel?: string;
 }
+
+const TOUCH_OVERLAY_CLASS =
+  "relative after:content-[''] after:absolute after:-inset-1.5 after:rounded-md";
 
 export const Header: React.FC<HeaderProps> = ({
   language,
   onLanguageChange,
   content,
+  onPrint,
+  printLabel = 'Print Information Sheet',
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -39,11 +46,11 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#FBFBF9]/95 backdrop-blur-sm border-b border-[#E2E8F0] no-print">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 sm:gap-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-8">
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#top"
-          className="font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[190px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
+          className="font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[155px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
         >
           {content.brandName}
         </a>
@@ -64,8 +71,8 @@ export const Header: React.FC<HeaderProps> = ({
           ))}
         </nav>
 
-        {/* Zone 3: Bilingual Segmented Language Control + Mobile Toggle */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Zone 3: Bilingual Segmented Language Control, Print Action & Mobile Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div
             role="group"
             aria-label={content.languageLabel}
@@ -76,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('en')}
               aria-pressed={language === 'en'}
               lang="en"
-              className={`relative after:content-[''] after:absolute after:-inset-y-2 after:-inset-x-0.5 sm:after:-inset-y-1 px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[40px] sm:min-h-[36px] inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} px-3.5 py-2 sm:px-3 sm:py-1.5 min-h-[44px] min-w-[44px] sm:min-h-[36px] text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'en'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -89,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('te')}
               aria-pressed={language === 'te'}
               lang="te"
-              className={`relative after:content-[''] after:absolute after:-inset-y-2 after:-inset-x-0.5 sm:after:-inset-y-1 px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 min-h-[40px] sm:min-h-[36px] inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} px-3.5 py-2 sm:px-3 sm:py-1.5 min-h-[44px] min-w-[44px] sm:min-h-[36px] text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'te'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -99,13 +106,26 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
+          {onPrint && (
+            <button
+              type="button"
+              onClick={onPrint}
+              aria-label={printLabel}
+              title={printLabel}
+              className={`${TOUCH_OVERLAY_CLASS} inline-flex items-center justify-center gap-1.5 px-3 py-2 min-h-[44px] min-w-[44px] sm:min-h-[38px] rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F1F5F9] text-xs font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
+            >
+              <Printer className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span className="hidden lg:inline">{printLabel}</span>
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
             aria-label={mobileMenuOpen ? content.mobileMenuClose : content.mobileMenuOpen}
-            className="relative after:content-[''] after:absolute after:-inset-1.5 md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+            className={`${TOUCH_OVERLAY_CLASS} md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-md border border-[#CBD5E1] text-[#0B192C] hover:bg-[#F1F5F9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

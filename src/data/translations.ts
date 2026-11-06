@@ -54,6 +54,7 @@ export interface TranslationContent {
     title: string;
     subtitle: string;
     fields: RecordItem[];
+    statutoryDeclaration: string;
     unconfirmedReferencesTitle: string;
     unconfirmedReferencesSubtitle: string;
     unconfirmedReferencesItems: {
@@ -117,7 +118,9 @@ export interface TranslationContent {
   modal: {
     title: string;
     subtitle: string;
+    acceptButton: string;
     closeButton: string;
+    mandatoryEntranceNote: string;
     paragraphs: string[];
     placeholderSummaryTitle: string;
     placeholderSummaryItems: string[];
@@ -202,6 +205,8 @@ export const translations: Record<Language, TranslationContent> = {
           id: 'enrolment-number',
           label: 'Enrolment Number',
           value: '1255/2020',
+          secondaryValue:
+            'Verification note: Standard State Bar Council prefix formatting is AP/1255/2020 (subject to roll certificate verification)',
           isPlaceholder: false,
           isMono: true,
         },
@@ -215,7 +220,7 @@ export const translations: Record<Language, TranslationContent> = {
         {
           id: 'original-sbc',
           label: 'State/Place of Original Enrolment',
-          value: 'Amravati',
+          value: 'Amaravati',
           isPlaceholder: false,
         },
         {
@@ -225,6 +230,8 @@ export const translations: Record<Language, TranslationContent> = {
           isPlaceholder: false,
         },
       ],
+      statutoryDeclaration:
+        'Declaration: I hereby declare that the information given above is true and correct. — Advocate Kaushal Kishor',
       unconfirmedReferencesTitle:
         'Additional References Supplied by Advocate — Pending Clarification',
       unconfirmedReferencesSubtitle:
@@ -339,7 +346,10 @@ export const translations: Record<Language, TranslationContent> = {
     modal: {
       title: 'Regulatory Notice & Clarification Disclosure',
       subtitle: 'Important notice regarding professional rules and items awaiting final clarification',
+      acceptButton: 'I Agree & Enter',
       closeButton: 'Close Notice',
+      mandatoryEntranceNote:
+        'In accordance with Rule 36 of the Bar Council of India Rules, visitors must confirm that they are accessing this factual professional information profile of their own accord and that there has been no advertisement, personal communication, solicitation, invitation, or inducement of any sort.',
       paragraphs: [
         'This website has been structured strictly as a factual professional information profile. It contains no promotional slogans, comparative claims, testimonials, case outcomes, consultation booking forms, or unsupported specialisation claims.',
         'Publication of any advocate information website is subject to applicable professional rules (including Rule 36 of the Bar Council of India Rules) and required approvals. This development preview does not claim or represent that it has been approved or certified by the Bar Council of India or any State Bar Council.',
@@ -430,6 +440,8 @@ export const translations: Record<Language, TranslationContent> = {
           id: 'enrolment-number',
           label: 'నమోదు సంఖ్య (Enrolment Number)',
           value: '1255/2020',
+          secondaryValue:
+            'ధృవీకరణ గమనిక: ప్రామాణిక స్టేట్ బార్ కౌన్సిల్ ప్రిఫిక్స్ ఫార్మాట్ AP/1255/2020 (నమోదు ధృవీకరణ పత్రం పరిశీలనకు లోబడి ఉంటుంది)',
           isPlaceholder: false,
           isMono: true,
         },
@@ -443,7 +455,7 @@ export const translations: Record<Language, TranslationContent> = {
         {
           id: 'original-sbc',
           label: 'మొదటి నమోదు రాష్ట్రం / ప్రదేశం (State/Place of Original Enrolment)',
-          value: 'అమరావతి (Amravati)',
+          value: 'అమరావతి (Amaravati)',
           isPlaceholder: false,
         },
         {
@@ -453,6 +465,8 @@ export const translations: Record<Language, TranslationContent> = {
           isPlaceholder: false,
         },
       ],
+      statutoryDeclaration:
+        'ప్రకటన: పైన పేర్కొన్న సమాచారం అంతా సత్యమని మరియు సరైనదని నేను ఇందుమూలంగా ప్రకటిస్తున్నాను. — న్యాయవాది కౌశల్ కిషోర్ (Declaration: I hereby declare that the information given above is true and correct. — Advocate Kaushal Kishor)',
       unconfirmedReferencesTitle:
         'న్యాయవాది అందించిన ఇతర ప్రస్తావనలు — స్పష్టత పెండింగ్‌లో ఉన్న వివరాలు',
       unconfirmedReferencesSubtitle:
@@ -570,7 +584,10 @@ export const translations: Record<Language, TranslationContent> = {
     modal: {
       title: 'నిబంధనల గమనిక & వివరణ ప్రకటన',
       subtitle: 'వృత్తిపరమైన నిబంధనలు మరియు తుది నిర్ధారణ కోసం వేచి ఉన్న అంశాల ముఖ్య గమనిక',
+      acceptButton: 'అంగీకరించి కొనసాగండి (I Agree & Enter)',
       closeButton: 'మూసివేయండి',
+      mandatoryEntranceNote:
+        'బార్ కౌన్సిల్ ఆఫ్ ఇండియా నిబంధన 36 ప్రకారం, సందర్శకులు తమ స్వంత ఇష్టప్రకారం ఈ వాస్తవిక వృత్తిపరమైన సమాచారాన్ని వీక్షిస్తున్నారని మరియు ఇందులో ఎటువంటి ప్రకటన, వ్యక్తిగత సమాచారం, ఆహ్వానం లేదా ప్రలోభం లేదని ధృవీకరించాలి.',
       paragraphs: [
         'ఈ వెబ్‌సైట్ కేవలం వాస్తవిక వృత్తిపరమైన సమాచార ప్రొఫైల్‌గా మాత్రమే రూపొందించబడింది. ఇందులో ఎలాంటి ప్రచార నినాదాలు, క్లయింట్ సమీక్షలు, కేసుల ఫలితాలు, లేదా అపాయింట్‌మెంట్ బుకింగ్ ఫారమ్‌లు చేర్చబడలేదు.',
         'ఈ వెబ్‌సైట్ ప్రచురణ వర్తించే వృత్తిపరమైన నిబంధనలు (బార్ కౌన్సిల్ ఆఫ్ ఇండియా నిబంధన 36 తో సహా) మరియు అవసరమైన ఆమోదాలకు లోబడి ఉంటుంది. ఈ ప్రివ్యూ బార్ కౌన్సిల్ ఆమోదం పొందినట్లు ఎటువంటి దావా చేయదు.',

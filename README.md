@@ -25,9 +25,9 @@ It purposefully excludes:
 - **Name**: Advocate Kaushal Kishor
 - **Qualifications**: M.Sc., LL.B.
 - **Location**: Gajuwaka, Visakhapatnam, Andhra Pradesh, India
-- **Enrolment Number**: `1255/2020`
+- **Enrolment Number**: `1255/2020` (Verification note: standard State Bar Council prefix format `AP/1255/2020`)
 - **Enrolment Date**: `30-12-2020`
-- **State/Place of Original Enrolment**: `Amravati`
+- **State/Place of Original Enrolment**: `Amaravati`
 - **Current State Bar Council**: `Andhra Pradesh`
 - **Practice Location**: `Visakhapatnam District Court`
 - **Court Representation**: `Courts across India, excluding the Supreme Court of India`
