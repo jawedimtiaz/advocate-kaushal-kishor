@@ -212,30 +212,39 @@
     border-bottom: 1.5pt solid #0B192C !important;
   }
 
-  /* Compact Print Layout Utility for Space-Saving Paper Output */
+  /* Compact Print Layout Utility driven by a single spacing scale multiplier */
+  .print-compact-layout {
+    --print-space-scale: 0.65;
+    --print-pad-y: calc(10pt * var(--print-space-scale));
+    --print-pad-x: calc(10pt * var(--print-space-scale));
+    --print-header-mb: calc(11pt * var(--print-space-scale));
+    --print-row-pad-y: calc(7pt * var(--print-space-scale));
+    --print-row-pad-x: calc(9.5pt * var(--print-space-scale));
+  }
+
   .print-compact-layout,
   .print-compact-layout.print-main,
   .print-compact-layout.print-section,
   .print-compact-layout .print-section {
-    padding-top: 6pt !important;
-    padding-bottom: 7pt !important;
+    padding-top: var(--print-pad-y) !important;
+    padding-bottom: var(--print-pad-y) !important;
     line-height: 1.3 !important;
   }
 
   .print-compact-layout .print-masthead-section,
   .print-compact-layout.print-masthead-section {
     padding-top: 0 !important;
-    padding-bottom: 7pt !important;
+    padding-bottom: var(--print-pad-y) !important;
   }
 
   .print-compact-layout .print-section-header,
   .print-compact-layout .print-section .print-section-header {
-    margin-bottom: 7pt !important;
-    padding-bottom: 3pt !important;
+    margin-bottom: var(--print-header-mb) !important;
+    padding-bottom: calc(4pt * var(--print-space-scale)) !important;
   }
 
   .print-compact-layout .print-record-row {
-    padding: 4.5pt 6pt !important;
+    padding: var(--print-row-pad-y) var(--print-row-pad-x) !important;
     line-height: 1.3 !important;
   }
 
@@ -244,7 +253,7 @@
   .print-compact-layout .print-summary-box,
   .print-compact-layout .print-declaration-box,
   .print-compact-layout .print-confidentiality-box {
-    padding: 5pt 7pt !important;
+    padding: var(--print-row-pad-y) var(--print-row-pad-x) !important;
     line-height: 1.3 !important;
   }
 
