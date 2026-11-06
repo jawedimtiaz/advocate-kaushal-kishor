@@ -52,6 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#top"
+          aria-label={`${content.brandName} - ${content.brandQualification}`}
           className="inline-flex items-center min-h-[48px] font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[155px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
         >
           {content.brandName}
@@ -84,6 +85,11 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               onClick={() => onLanguageChange('en')}
               aria-pressed={language === 'en'}
+              aria-label={
+                language === 'en'
+                  ? content.languageSwitcherEnActive
+                  : content.languageSwitcherEnInactive
+              }
               lang="en"
               className={`${TOUCH_OVERLAY_CLASS} min-h-[48px] min-w-[48px] px-3.5 py-2 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'en'
@@ -97,6 +103,11 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               onClick={() => onLanguageChange('te')}
               aria-pressed={language === 'te'}
+              aria-label={
+                language === 'te'
+                  ? content.languageSwitcherTeActive
+                  : content.languageSwitcherTeInactive
+              }
               lang="te"
               className={`${TOUCH_OVERLAY_CLASS} min-h-[48px] min-w-[48px] px-3.5 py-2 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'te'

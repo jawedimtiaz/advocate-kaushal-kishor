@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { ArrowUp, Printer } from 'lucide-react';
+import { ArrowUp, Clock, Globe, Printer } from 'lucide-react';
 import { Language, translations } from './data/translations';
 import { Header } from './components/Header';
 import { BreadcrumbNav, BreadcrumbSection } from './components/BreadcrumbNav';
@@ -189,8 +189,18 @@ export default function App() {
         minute: '2-digit',
         hour12: true,
       }).format(now)}`;
-      stampEl.textContent = updatedStamp;
+      const timestampInner = stampEl.querySelector('.print-generated-timestamp');
+      if (timestampInner) {
+        timestampInner.textContent = updatedStamp;
+      } else {
+        stampEl.textContent = updatedStamp;
+      }
       stampEl.setAttribute('data-generated-on', updatedStamp);
+    }
+
+    const urlEl = document.querySelector('.print-source-url');
+    if (urlEl && typeof window !== 'undefined') {
+      urlEl.textContent = `Document URL: ${window.location.href}`;
     }
 
     // Defer window.print slightly to allow the UI to render the 'Printing...' feedback overlay
@@ -471,7 +481,29 @@ export default function App() {
         contact={t.contactSection}
         privacyPolicy={t.privacyPolicy}
         onOpenRegulatoryModal={() => setIsRegulatoryModalOpen(true)}
-      />
+      >
+        {/* Print-only document tracking metadata element */}
+        <div
+          id="print-generated-stamp"
+          className="print-metadata-block hidden font-mono-tabular"
+          aria-hidden="true"
+        >
+          <div className="print-metadata-item print-metadata-badge">
+            <Printer className="print-metadata-icon w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            <span className="print-metadata-tag">Official Print Record</span>
+          </div>
+          <div className="print-metadata-item print-metadata-source">
+            <Globe className="print-metadata-icon w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            <span className="print-source-url">
+              Document URL: {typeof window !== 'undefined' ? window.location.href : ''}
+            </span>
+          </div>
+          <div className="print-metadata-item print-metadata-timestamp">
+            <Clock className="print-metadata-icon w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            <span className="print-generated-timestamp" />
+          </div>
+        </div>
+      </Footer>
 
       {/* Subtle 'Printing...' Visual Feedback Overlay */}
       {isPrinting && (

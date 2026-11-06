@@ -79,7 +79,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <button
                 type="button"
                 onClick={() => handleCopy(content.addressSingleLine, 'address')}
-                aria-label={`${content.copyAddressButton}: ${content.addressLabel}`}
+                aria-label={
+                  copiedField === 'address'
+                    ? `${content.addressLabel}: ${content.copiedAriaLabel}`
+                    : `${content.copyAddressButton}: ${content.addressLabel}`
+                }
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
               >
                 {copiedField === 'address' ? (
@@ -101,9 +105,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 href={content.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={content.viewOnMapAriaLabel}
                 className="no-print inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#785C22] hover:text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
               >
                 <span>{content.viewOnMapLabel}</span>
+                <span className="sr-only"> ({content.opensInNewTab})</span>
                 <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#785C22]" aria-hidden="true" />
               </a>
             </div>
@@ -120,6 +126,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <div className="mt-2.5 flex flex-wrap items-center justify-between gap-4">
               <a
                 href={content.phoneHref}
+                aria-label={`${content.directCallLabel} ${content.phoneLabel}: ${content.phoneValue}`}
                 className="font-mono-tabular text-lg sm:text-xl font-medium text-[#0B192C] hover:text-[#9A7B38] underline decoration-[#CBD5E1] hover:decoration-[#9A7B38] underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
               >
                 {content.phoneValue}
@@ -128,7 +135,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => handleCopy(content.phoneValue, 'phone')}
-                  aria-label={`${content.copyButton} ${content.phoneLabel}`}
+                  aria-label={
+                    copiedField === 'phone'
+                      ? `${content.phoneLabel}: ${content.copiedAriaLabel}`
+                      : `${content.copyButton} ${content.phoneLabel}`
+                  }
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   {copiedField === 'phone' ? (
@@ -155,6 +166,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <div className="mt-2.5 flex flex-wrap items-center justify-between gap-4">
               <a
                 href={content.emailHref}
+                aria-label={`${content.directEmailLabel} ${content.emailLabel}: ${content.emailValue}`}
                 className="font-mono-tabular text-base sm:text-lg font-medium text-[#0B192C] hover:text-[#9A7B38] underline decoration-[#CBD5E1] hover:decoration-[#9A7B38] underline-offset-4 transition-colors break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
               >
                 {content.emailValue}
@@ -163,7 +175,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => handleCopy(content.emailValue, 'email')}
-                  aria-label={`${content.copyButton} ${content.emailLabel}`}
+                  aria-label={
+                    copiedField === 'email'
+                      ? `${content.emailLabel}: ${content.copiedAriaLabel}`
+                      : `${content.copyButton} ${content.emailLabel}`
+                  }
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
                 >
                   {copiedField === 'email' ? (
@@ -212,6 +228,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       <p className="mt-4 text-xs text-[#475569] leading-relaxed">
         {content.noSolicitationNotice}
       </p>
+
+      {/* Screen reader live region for copy confirmation */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {copiedField === 'address' && `${content.addressLabel}: ${content.copiedAriaLabel}`}
+        {copiedField === 'phone' && `${content.phoneLabel}: ${content.copiedAriaLabel}`}
+        {copiedField === 'email' && `${content.emailLabel}: ${content.copiedAriaLabel}`}
+      </div>
     </section>
   );
 };

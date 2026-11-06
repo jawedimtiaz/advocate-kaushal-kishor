@@ -30,6 +30,10 @@ export interface TranslationContent {
     practice: string;
     contact: string;
     languageLabel: string;
+    languageSwitcherEnActive: string;
+    languageSwitcherEnInactive: string;
+    languageSwitcherTeActive: string;
+    languageSwitcherTeInactive: string;
     mobileMenuOpen: string;
     mobileMenuClose: string;
     breadcrumbAriaLabel: string;
@@ -113,12 +117,15 @@ export interface TranslationContent {
     confidentialityNoticeTitle: string;
     confidentialityNotice: string;
     viewOnMapLabel: string;
+    viewOnMapAriaLabel: string;
     mapsUrl: string;
     copyButton: string;
     copiedButton: string;
     copyAddressButton: string;
     directCallLabel: string;
     directEmailLabel: string;
+    copiedAriaLabel: string;
+    opensInNewTab: string;
     noSolicitationNotice: string;
   };
   footer: {
@@ -176,6 +183,10 @@ export const translations: Record<Language, TranslationContent> = {
       practice: 'Practice',
       contact: 'Contact',
       languageLabel: 'Select language',
+      languageSwitcherEnActive: 'English (Currently selected)',
+      languageSwitcherEnInactive: 'Switch language to English',
+      languageSwitcherTeActive: 'Telugu (Currently selected)',
+      languageSwitcherTeInactive: 'Switch language to Telugu',
       mobileMenuOpen: 'Open navigation menu',
       mobileMenuClose: 'Close navigation menu',
       breadcrumbAriaLabel: 'Breadcrumb trail',
@@ -373,6 +384,7 @@ export const translations: Record<Language, TranslationContent> = {
       confidentialityNotice:
         'Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship.',
       viewOnMapLabel: 'View Chamber Location on Google Maps',
+      viewOnMapAriaLabel: 'View Chamber Location on Google Maps (opens in a new tab)',
       mapsUrl:
         'https://maps.google.com/?q=Chinnagantyada,+Gajuwaka,+Visakhapatnam,+Andhra+Pradesh+530026',
       copyButton: 'Copy',
@@ -380,6 +392,8 @@ export const translations: Record<Language, TranslationContent> = {
       copyAddressButton: 'Copy Address',
       directCallLabel: 'Call',
       directEmailLabel: 'Email',
+      copiedAriaLabel: 'Copied to clipboard',
+      opensInNewTab: 'opens in a new tab',
       noSolicitationNotice:
         'This section provides factual contact details only. No online consultation booking, appointment scheduling, or lead-generation forms are operated on this website.',
     },
@@ -467,6 +481,10 @@ export const translations: Record<Language, TranslationContent> = {
       practice: 'ప్రాక్టీస్ రంగాలు',
       contact: 'సంప్రదింపు వివరాలు',
       languageLabel: 'భాషను ఎంచుకోండి',
+      languageSwitcherEnActive: 'ఇంగ్లీష్ (ప్రస్తుతం ఎంపిక చేయబడింది)',
+      languageSwitcherEnInactive: 'ఇంగ్లీష్ భాషకు మార్చండి (Switch language to English)',
+      languageSwitcherTeActive: 'తెలుగు (ప్రస్తుతం ఎంపిక చేయబడింది)',
+      languageSwitcherTeInactive: 'తెలుగు భాషకు మార్చండి (Switch language to Telugu)',
       mobileMenuOpen: 'నావిగేషన్ మెనూ తెరవండి',
       mobileMenuClose: 'నావిగేషన్ మెనూ మూసివేయండి',
       breadcrumbAriaLabel: 'బ్రెడ్‌క్రంబ్ నావిగేషన్',
@@ -668,6 +686,7 @@ export const translations: Record<Language, TranslationContent> = {
       confidentialityNotice:
         'గోప్యతా ప్రకటన (Notice on Confidentiality): న్యాయవాది-కక్షిదారుల చట్టబద్ధమైన హక్కు ప్రకారం పంచుకోబడిన అన్ని సంప్రదింపులు మరియు పత్రాలు పూర్తిగా గోప్యంగా ఉంచబడతాయి. ముందస్తు అంగీకారం లేకుండా సమాచారాన్ని పంపడం వలన న్యాయవాది-కక్షిదారుల సంబంధం ఏర్పడదు (Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship).',
       viewOnMapLabel: 'గూగుల్ మ్యాప్స్‌లో కార్యాలయ స్థానాన్ని చూడండి (View Chamber Location on Google Maps)',
+      viewOnMapAriaLabel: 'గూగుల్ మ్యాప్స్‌లో కార్యాలయ స్థానాన్ని చూడండి (కొత్త ట్యాబ్‌లో తెరవబడుతుంది)',
       mapsUrl:
         'https://maps.google.com/?q=Chinnagantyada,+Gajuwaka,+Visakhapatnam,+Andhra+Pradesh+530026',
       copyButton: 'కాపీ చేయండి',
@@ -675,6 +694,8 @@ export const translations: Record<Language, TranslationContent> = {
       copyAddressButton: 'చిరునామా కాపీ చేయండి',
       directCallLabel: 'కాల్ చేయండి',
       directEmailLabel: 'ఈమెయిల్ పంపండి',
+      copiedAriaLabel: 'క్లిప్‌బోర్డ్‌కి కాపీ చేయబడింది',
+      opensInNewTab: 'కొత్త ట్యాబ్‌లో తెరవబడుతుంది',
       noSolicitationNotice:
         'ఈ విభాగం కేవలం వాస్తవిక సంప్రదింపు వివరాలను మాత్రమే అందిస్తుంది. ఆన్‌లైన్ అపాయింట్‌మెంట్ బుకింగ్ లేదా సంప్రదింపు ఫారమ్‌లు ఇందులో లేవు.',
     },
