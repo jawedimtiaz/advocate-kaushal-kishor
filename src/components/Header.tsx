@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('en')}
               aria-pressed={language === 'en'}
               lang="en"
-              className={`${TOUCH_OVERLAY_CLASS} px-3.5 py-2 sm:px-3 sm:py-1.5 min-h-[44px] min-w-[44px] sm:min-h-[36px] text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} min-h-[44px] min-w-[44px] px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'en'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onLanguageChange('te')}
               aria-pressed={language === 'te'}
               lang="te"
-              className={`${TOUCH_OVERLAY_CLASS} px-3.5 py-2 sm:px-3 sm:py-1.5 min-h-[44px] min-w-[44px] sm:min-h-[36px] text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
+              className={`${TOUCH_OVERLAY_CLASS} min-h-[44px] min-w-[44px] px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap shrink-0 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C] ${
                 language === 'te'
                   ? 'bg-[#0B192C] text-white shadow-xs'
                   : 'text-[#334155] hover:text-[#0B192C] hover:bg-white/60'
@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onPrint}
               aria-label={printLabel}
               title={printLabel}
-              className={`${TOUCH_OVERLAY_CLASS} inline-flex items-center justify-center gap-1.5 px-3 py-2 min-h-[44px] min-w-[44px] sm:min-h-[38px] rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F1F5F9] text-xs font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
+              className={`${TOUCH_OVERLAY_CLASS} inline-flex items-center justify-center gap-1.5 min-h-[44px] min-w-[44px] px-3 py-1.5 rounded-md border border-[#CBD5E1] bg-white text-[#0B192C] hover:bg-[#F1F5F9] text-xs font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]`}
             >
               <Printer className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span className="hidden lg:inline">{printLabel}</span>

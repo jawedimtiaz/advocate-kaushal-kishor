@@ -146,6 +146,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
               </div>
             </div>
           </div>
+
+          {/* Office Hours & Appointment-Only Visits Note */}
+          <div className="p-6 sm:p-8 bg-[#FBFBF9]">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#475569]">
+              {content.officeHoursLabel}
+            </h3>
+            <p className="mt-2 font-mono-tabular text-sm sm:text-base font-medium text-[#0B192C]">
+              {content.officeHoursLabel}: {content.officeHoursValue}
+            </p>
+            <p className="mt-2 border-l-2 border-[#785C22] pl-3 text-xs sm:text-sm font-medium text-[#334155] leading-relaxed">
+              {content.appointmentNotice}
+            </p>
+          </div>
         </div>
       </div>
 

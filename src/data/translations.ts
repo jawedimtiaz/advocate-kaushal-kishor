@@ -97,6 +97,9 @@ export interface TranslationContent {
     emailLabel: string;
     emailValue: string;
     emailHref: string;
+    officeHoursLabel: string;
+    officeHoursValue: string;
+    appointmentNotice: string;
     copyButton: string;
     copiedButton: string;
     copyAddressButton: string;
@@ -302,7 +305,7 @@ export const translations: Record<Language, TranslationContent> = {
     contactSection: {
       index: '04',
       title: 'Contact Information',
-      subtitle: 'Office address and direct correspondence details.',
+      subtitle: 'Office address, correspondence details, and office hours.',
       addressLabel: 'Office Address',
       addressLines: [
         '26-2-20/1, Chaitanya Nagar,',
@@ -321,6 +324,10 @@ export const translations: Record<Language, TranslationContent> = {
       emailLabel: 'Email Address',
       emailValue: 'kaushalkisho@gmail.com',
       emailHref: 'mailto:kaushalkisho@gmail.com',
+      officeHoursLabel: 'Office Hours',
+      officeHoursValue: 'Monday to Friday, 10:00 AM - 5:00 PM',
+      appointmentNotice:
+        'Appointment Only: In-person office visits are strictly by prior appointment (subject to court appearance schedules).',
       copyButton: 'Copy',
       copiedButton: 'Copied',
       copyAddressButton: 'Copy Address',
@@ -540,7 +547,7 @@ export const translations: Record<Language, TranslationContent> = {
     contactSection: {
       index: '04',
       title: 'సంప్రదింపు సమాచారం',
-      subtitle: 'కార్యాలయ చిరునామా మరియు టెలిఫోన్ / ఈమెయిల్ వివరాలు.',
+      subtitle: 'కార్యాలయ చిరునామా, టెలిఫోన్ / ఈమెయిల్ మరియు కార్యాలయ సమయాల వివరాలు.',
       addressLabel: 'కార్యాలయ చిరునామా',
       addressLines: [
         '26-2-20/1, చైతన్య నగర్,',
@@ -559,6 +566,11 @@ export const translations: Record<Language, TranslationContent> = {
       emailLabel: 'ఈమెయిల్ చిరునామా',
       emailValue: 'kaushalkisho@gmail.com',
       emailHref: 'mailto:kaushalkisho@gmail.com',
+      officeHoursLabel: 'కార్యాలయ సమయాలు (Office Hours)',
+      officeHoursValue:
+        'సోమవారం నుండి శుక్రవారం వరకు, ఉదయం 10:00 - సాయంత్రం 5:00 (Monday to Friday, 10:00 AM - 5:00 PM)',
+      appointmentNotice:
+        'ముందస్తు అనుమతి మాత్రమే (Appointment Only): కార్యాలయ సందర్శనలు ముందస్తు అనుమతి ద్వారా మాత్రమే (కోర్టు విచారణ సమయాలకు లోబడి ఉంటుంది).',
       copyButton: 'కాపీ చేయండి',
       copiedButton: 'కాపీ చేయబడింది',
       copyAddressButton: 'చిరునామా కాపీ చేయండి',

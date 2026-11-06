@@ -12,6 +12,14 @@ export const Footer: React.FC<FooterProps> = ({
   contact,
   onOpenRegulatoryModal,
 }) => {
+  const currentUrl =
+    typeof window !== 'undefined' ? window.location.href : '';
+  const generatedOnDate = new Intl.DateTimeFormat('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date());
+
   return (
     <footer className="print-footer bg-[#0B192C] text-[#F8FAFC] border-t-2 border-[#B8964C]/50">
       <div className="print-footer-inner max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -76,6 +84,15 @@ export const Footer: React.FC<FooterProps> = ({
           <p className="text-[#94A3B8] max-w-md sm:text-right">
             {content.shortAddress}
           </p>
+        </div>
+
+        {/* Hidden Print-Only Document Tracking Metadata Block */}
+        <div
+          aria-hidden="true"
+          className="print-metadata-block hidden font-mono-tabular"
+        >
+          <span>Source URL: {currentUrl}</span>
+          <span>Generated on: {generatedOnDate}</span>
         </div>
       </div>
     </footer>

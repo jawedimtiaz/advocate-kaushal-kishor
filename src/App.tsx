@@ -45,6 +45,8 @@ export default function App() {
     }
   });
 
+  const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
+
   const t = translations[language];
 
   useEffect(() => {
@@ -56,6 +58,52 @@ export default function App() {
       // Ignore storage access errors
     }
   }, [language, t.meta.pageTitle]);
+
+  useEffect(() => {
+    const sectionIds = [
+      'masthead-info',
+      'professional-info',
+      'enrolment-info',
+      'areas-of-practice',
+    ];
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setVisibleSections({
+        'masthead-info': true,
+        'professional-info': true,
+        'enrolment-info': true,
+        'areas-of-practice': true,
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setVisibleSections((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getSectionFadeClass = (id: string) =>
+    visibleSections[id]
+      ? 'animate-in fade-in slide-in-from-bottom-2 duration-700 ease-out fill-mode-forwards motion-reduce:animate-none motion-reduce:opacity-100'
+      : 'opacity-0 motion-reduce:opacity-100';
 
   const handleAcceptDisclaimer = () => {
     try {
@@ -117,8 +165,9 @@ export default function App() {
       >
         {/* Institutional Identity Masthead */}
         <section
+          id="masthead-info"
           aria-labelledby="advocate-identity-heading"
-          className="print-section print-masthead-section py-10 sm:py-16 border-b border-[#E2E8F0]"
+          className={`print-section print-masthead-section py-10 sm:py-16 border-b border-[#E2E8F0] ${getSectionFadeClass('masthead-info')}`}
         >
           <div className="print-masthead bg-white border border-[#E2E8F0] p-6 sm:p-10 lg:p-12">
             <div className="print-masthead-header flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E2E8F0]">
@@ -173,7 +222,7 @@ export default function App() {
         <section
           id="professional-info"
           aria-labelledby="heading-professional-info"
-          className="print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20"
+          className={`print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20 ${getSectionFadeClass('professional-info')}`}
         >
           <SectionHeader
             id="heading-professional-info"
@@ -188,7 +237,7 @@ export default function App() {
         <section
           id="enrolment-info"
           aria-labelledby="heading-enrolment-info"
-          className="print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20"
+          className={`print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20 ${getSectionFadeClass('enrolment-info')}`}
         >
           <SectionHeader
             id="heading-enrolment-info"
@@ -241,7 +290,7 @@ export default function App() {
         <section
           id="areas-of-practice"
           aria-labelledby="heading-areas-of-practice"
-          className="print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20"
+          className={`print-section py-12 sm:py-16 border-b border-[#E2E8F0] scroll-mt-20 ${getSectionFadeClass('areas-of-practice')}`}
         >
           <SectionHeader
             id="heading-areas-of-practice"
