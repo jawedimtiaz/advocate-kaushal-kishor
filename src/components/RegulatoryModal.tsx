@@ -14,20 +14,55 @@ export const RegulatoryModal: React.FC<RegulatoryModalProps> = ({
   content,
 }) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
+
     const previouslyFocused = document.activeElement as HTMLElement | null;
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        event.preventDefault();
         onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const focusable = Array.from(focusableElements ?? []).filter(
+        (element) => !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true'
+      );
+
+      if (focusable.length === 0) {
+        event.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !dialogRef.current?.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !dialogRef.current?.contains(active))) {
+        event.preventDefault();
+        first.focus();
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
       previouslyFocused?.focus?.();
     };
   }, [isOpen, onClose]);
@@ -46,7 +81,11 @@ export const RegulatoryModal: React.FC<RegulatoryModalProps> = ({
       aria-modal="true"
       aria-labelledby="regulatory-modal-title"
     >
-      <div className="bg-white border border-[#CBD5E1] max-w-2xl w-full p-6 sm:p-8 shadow-lg max-h-[90vh] overflow-y-auto">
+      <div
+        ref={dialogRef}
+        tabIndex={-1}
+        className="bg-white border border-[#CBD5E1] max-w-2xl w-full p-6 sm:p-8 shadow-lg max-h-[90vh] overflow-y-auto focus:outline-none"
+      >
         <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
           <div>
             <h2

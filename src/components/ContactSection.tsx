@@ -36,6 +36,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
         subtitle={content.subtitle}
       />
 
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {copiedField ? content.copiedButton : ''}
+      </p>
+
       <div className="print-contact-grid grid grid-cols-1 lg:grid-cols-12 border border-[#E2E8F0] bg-white divide-y lg:divide-y-0 lg:divide-x divide-[#E2E8F0]">
         {/* Office Address Block */}
         <div className="print-contact-block lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between">
