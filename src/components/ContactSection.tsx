@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Check, Copy } from 'lucide-react';
-import { TranslationContent } from '../data/translations';
+import { Check, Copy, ExternalLink } from 'lucide-react';
+import { RecordItem, TranslationContent } from '../data/translations';
 import { SectionHeader } from './SectionHeader';
+import { DefinitionRecordList } from './DefinitionRecordList';
 
 interface ContactSectionProps {
   content: TranslationContent['contactSection'];
+  className?: string;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({
+  content,
+  className = '',
+}) => {
   const [copiedField, setCopiedField] = useState<'phone' | 'email' | 'address' | null>(null);
 
   const handleCopy = async (value: string, field: 'phone' | 'email' | 'address') => {
@@ -23,11 +28,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
     }
   };
 
+  const contactDefinitionItems: RecordItem[] = [
+    {
+      id: 'chamber-hours-availability',
+      label: content.chamberHoursLabel,
+      value: content.chamberHoursValue,
+      secondaryValue: content.appointmentNotice,
+      isPlaceholder: false,
+    },
+    {
+      id: 'languages-handled',
+      label: content.languagesLabel,
+      value: content.languagesValue,
+      isPlaceholder: false,
+    },
+  ];
+
   return (
     <section
       id="contact-info"
       aria-labelledby="heading-contact-info"
-      className="print-section py-12 sm:py-16 scroll-mt-20"
+      className={`print-section py-12 sm:py-16 scroll-mt-20 ${className}`}
     >
       <SectionHeader
         id="heading-contact-info"
@@ -50,28 +71,42 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
             </address>
           </div>
 
-          <div className="mt-6 pt-5 border-t border-[#F1F5F9] flex flex-wrap items-center justify-between gap-4 no-print">
-            <span className="text-xs text-[#475569]">
-              {content.JurisdictionLabel}: {content.JurisdictionValue}
-            </span>
-            <button
-              type="button"
-              onClick={() => handleCopy(content.addressSingleLine, 'address')}
-              aria-label={`${content.copyAddressButton}: ${content.addressLabel}`}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
-            >
-              {copiedField === 'address' ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-[#0B192C]" aria-hidden="true" />
-                  <span>{content.copiedButton}</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5 text-[#475569]" aria-hidden="true" />
-                  <span>{content.copyAddressButton}</span>
-                </>
-              )}
-            </button>
+          <div className="mt-6 pt-5 border-t border-[#F1F5F9] space-y-3 no-print">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <span className="text-xs text-[#475569]">
+                {content.JurisdictionLabel}: {content.JurisdictionValue}
+              </span>
+              <button
+                type="button"
+                onClick={() => handleCopy(content.addressSingleLine, 'address')}
+                aria-label={`${content.copyAddressButton}: ${content.addressLabel}`}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+              >
+                {copiedField === 'address' ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-[#0B192C]" aria-hidden="true" />
+                    <span>{content.copiedButton}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-[#475569]" aria-hidden="true" />
+                    <span>{content.copyAddressButton}</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            <div className="pt-1">
+              <a
+                href={content.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-print inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] text-xs font-medium text-[#785C22] hover:text-[#0B192C] bg-[#F8FAFC] hover:bg-[#F1F5F9] border border-[#CBD5E1] rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8964C]"
+              >
+                <span>{content.viewOnMapLabel}</span>
+                <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#785C22]" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -147,19 +182,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
             </div>
           </div>
 
-          {/* Office Hours & Appointment-Only Visits Note */}
+          {/* Chamber Hours & Availability / Prior Appointment Note */}
           <div className="p-6 sm:p-8 bg-[#FBFBF9]">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[#475569]">
-              {content.officeHoursLabel}
+              {content.chamberHoursLabel}
             </h3>
             <p className="mt-2 font-mono-tabular text-sm sm:text-base font-medium text-[#0B192C]">
-              {content.officeHoursLabel}: {content.officeHoursValue}
+              {content.chamberHoursValue}
             </p>
             <p className="mt-2 border-l-2 border-[#785C22] pl-3 text-xs sm:text-sm font-medium text-[#334155] leading-relaxed">
               {content.appointmentNotice}
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Chamber Hours & Languages Handled Definition Rows */}
+      <div className="mt-8 border border-[#E2E8F0] bg-white">
+        <DefinitionRecordList items={contactDefinitionItems} className="border-t-0 border-b-0" />
+      </div>
+
+      {/* Statutory Privilege & Confidentiality Disclaimer */}
+      <div className="print-confidentiality-box mt-6 border-l-2 border-[#785C22] bg-[#FBFBF9] border border-[#CBD5E1] p-5 sm:p-6">
+        <p className="text-xs sm:text-sm font-medium text-[#0B192C] leading-relaxed">
+          {content.confidentialityNotice}
+        </p>
       </div>
 
       <p className="mt-4 text-xs text-[#475569] leading-relaxed">

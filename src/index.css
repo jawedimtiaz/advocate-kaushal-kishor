@@ -42,18 +42,14 @@
 
   .main-dossier-container {
     background-color: #FAF9F5;
+    /* Subtle organic paper stippling: multi-frequency micro-stipple for tactile legal bond depth */
     background-image:
-      radial-gradient(rgba(11, 25, 44, 0.032) 0.75px, transparent 0.75px),
-      radial-gradient(rgba(184, 150, 76, 0.038) 0.75px, transparent 0.75px),
-      repeating-linear-gradient(
-        135deg,
-        rgba(11, 25, 44, 0.016) 0px,
-        rgba(11, 25, 44, 0.016) 1px,
-        transparent 1px,
-        transparent 10px
-      );
-    background-size: 14px 14px, 14px 14px, 14px 14px;
-    background-position: 0 0, 7px 7px, 0 0;
+      radial-gradient(rgba(11, 25, 44, 0.038) 0.6px, transparent 0.6px),
+      radial-gradient(rgba(120, 92, 34, 0.032) 0.65px, transparent 0.65px),
+      radial-gradient(rgba(11, 25, 44, 0.026) 0.75px, transparent 0.75px),
+      radial-gradient(rgba(184, 150, 76, 0.028) 0.55px, transparent 0.55px);
+    background-size: 6px 6px, 11px 11px, 17px 17px, 23px 23px;
+    background-position: 0 0, 4px 6px, 9px 3px, 13px 17px;
     box-shadow:
       0 1px 3px rgba(11, 25, 44, 0.03),
       0 10px 30px -12px rgba(11, 25, 44, 0.045);
@@ -185,6 +181,7 @@
   /* 4. Typography & Heading Hierarchy for Physical Printout */
   h1 {
     font-size: 22pt !important;
+    font-weight: 700 !important;
     line-height: 1.15 !important;
     color: #000000 !important;
     margin-top: 2pt !important;
@@ -192,6 +189,7 @@
 
   h2 {
     font-size: 14pt !important;
+    font-weight: 700 !important;
     line-height: 1.25 !important;
     color: #000000 !important;
     break-after: avoid;
@@ -200,6 +198,7 @@
 
   h3 {
     font-size: 11.5pt !important;
+    font-weight: 700 !important;
     line-height: 1.3 !important;
     color: #000000 !important;
     break-after: avoid;
@@ -208,6 +207,7 @@
 
   h4 {
     font-size: 11pt !important;
+    font-weight: 700 !important;
     color: #000000 !important;
   }
 
@@ -219,9 +219,15 @@
     page-break-after: avoid;
   }
 
+  .print-section-header span {
+    font-weight: 700 !important;
+    color: #000000 !important;
+  }
+
   .print-section-header p {
     font-size: 9pt !important;
-    color: #334155 !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
     margin-top: 2pt !important;
   }
 
@@ -248,11 +254,21 @@
     border-bottom: none !important;
   }
 
-  .print-record-label {
-    font-size: 9.5pt !important;
+  .print-record-label,
+  dt.print-record-label,
+  .print-record-label * {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.01em !important;
+    color: #000000 !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+  }
+
+  dt {
     font-weight: 700 !important;
     color: #000000 !important;
-    margin: 0 !important;
   }
 
   .print-record-value {
@@ -323,6 +339,23 @@
 
   .print-declaration-box p {
     font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    margin: 0 !important;
+  }
+
+  .print-confidentiality-box {
+    margin-top: 8pt !important;
+    padding: 7pt 10pt !important;
+    border: 0.75pt solid #0B192C !important;
+    border-left: 2.5pt solid #0B192C !important;
+    background-color: #FFFFFF !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-confidentiality-box p {
+    font-size: 9pt !important;
     font-weight: 600 !important;
     color: #000000 !important;
     margin: 0 !important;
@@ -399,9 +432,35 @@
     align-items: baseline !important;
     gap: 12pt !important;
     margin-top: 8pt !important;
-    padding-top: 6pt !important;
-    border-top: 0.5pt dashed #94A3B8 !important;
-    font-size: 8pt !important;
-    color: #334155 !important;
+    padding: 6pt 8pt !important;
+    border: 0.5pt solid #94A3B8 !important;
+    border-top: 1pt solid #0B192C !important;
+    background-color: #FFFFFF !important;
+    font-family: var(--font-mono) !important;
+    font-size: 8.5pt !important;
+    font-weight: 500 !important;
+    color: #000000 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-metadata-block span {
+    font-family: var(--font-mono) !important;
+    font-size: 8.5pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+  }
+
+  .print-generated-timestamp {
+    display: inline-block !important;
+    font-family: var(--font-mono) !important;
+    font-size: 8.5pt !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    white-space: nowrap !important;
+  }
+
+  .print-generated-timestamp:empty::after {
+    content: attr(data-generated-on);
   }
 }

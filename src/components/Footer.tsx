@@ -14,11 +14,36 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   const currentUrl =
     typeof window !== 'undefined' ? window.location.href : '';
-  const generatedOnDate = new Intl.DateTimeFormat('en-IN', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  }).format(new Date());
+
+  const formatGeneratedStamp = () => {
+    const now = new Date();
+    const dateFormatted = new Intl.DateTimeFormat('en-IN', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }).format(now);
+    return `Generated on: ${dateFormatted}`;
+  };
+
+  const [generatedOnDate, setGeneratedOnDate] = React.useState<string>(formatGeneratedStamp);
+
+  React.useEffect(() => {
+    const handleBeforePrint = () => {
+      const updatedStamp = formatGeneratedStamp();
+      setGeneratedOnDate(updatedStamp);
+      const stampEl = document.getElementById('print-generated-stamp');
+      if (stampEl) {
+        stampEl.textContent = updatedStamp;
+        stampEl.setAttribute('data-generated-on', updatedStamp);
+      }
+    };
+
+    window.addEventListener('beforeprint', handleBeforePrint);
+    return () => window.removeEventListener('beforeprint', handleBeforePrint);
+  }, []);
 
   return (
     <footer className="print-footer bg-[#0B192C] text-[#F8FAFC] border-t-2 border-[#B8964C]/50">
@@ -91,8 +116,14 @@ export const Footer: React.FC<FooterProps> = ({
           aria-hidden="true"
           className="print-metadata-block hidden font-mono-tabular"
         >
-          <span>Source URL: {currentUrl}</span>
-          <span>Generated on: {generatedOnDate}</span>
+          <span className="print-source-url">Source URL: {currentUrl}</span>
+          <span
+            id="print-generated-stamp"
+            className="print-generated-timestamp"
+            data-generated-on={generatedOnDate}
+          >
+            {generatedOnDate}
+          </span>
         </div>
       </div>
     </footer>

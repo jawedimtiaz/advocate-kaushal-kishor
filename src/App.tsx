@@ -65,6 +65,7 @@ export default function App() {
       'professional-info',
       'enrolment-info',
       'areas-of-practice',
+      'contact-info',
     ];
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
@@ -73,6 +74,7 @@ export default function App() {
         'professional-info': true,
         'enrolment-info': true,
         'areas-of-practice': true,
+        'contact-info': true,
       });
       return;
     }
@@ -87,7 +89,7 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
     );
 
     sectionIds.forEach((id) => {
@@ -116,6 +118,20 @@ export default function App() {
   };
 
   const handlePrint = () => {
+    const stampEl = document.getElementById('print-generated-stamp');
+    if (stampEl) {
+      const now = new Date();
+      const updatedStamp = `Generated on: ${new Intl.DateTimeFormat('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }).format(now)}`;
+      stampEl.textContent = updatedStamp;
+      stampEl.setAttribute('data-generated-on', updatedStamp);
+    }
     window.print();
   };
 
@@ -352,7 +368,10 @@ export default function App() {
         </section>
 
         {/* Section 5: Contact Information */}
-        <ContactSection content={t.contactSection} />
+        <ContactSection
+          content={t.contactSection}
+          className={getSectionFadeClass('contact-info')}
+        />
       </main>
 
       {/* Section 6: Footer */}

@@ -32,6 +32,8 @@ It purposefully excludes:
 - **Practice Location**: `Visakhapatnam District Court`
 - **Court Representation**: `Courts across India, excluding the Supreme Court of India`
 - **Areas of Practice**: `Family Law`, `Criminal Law`
+- **Languages Handled**: `Telugu, English, Hindi`
+- **Chamber Hours & Availability**: Monday to Saturday: 6:00 PM – 9:00 PM (Prior appointment recommended); Court Hours: 10:30 AM – 4:30 PM
 - **Office Address**: 26-2-20/1, Chaitanya Nagar, behind Mee Seva, R.K. Hospital Lane, Chinnagantyada, Gajuwaka, Visakhapatnam – 530026, Andhra Pradesh.
 - **Telephone**: `9885037796`
 - **Email**: `kaushalkisho@gmail.com`

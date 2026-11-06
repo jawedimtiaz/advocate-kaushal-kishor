@@ -3,11 +3,17 @@ import { RecordItem } from '../data/translations';
 
 interface DefinitionRecordListProps {
   items: RecordItem[];
+  className?: string;
 }
 
-export const DefinitionRecordList: React.FC<DefinitionRecordListProps> = ({ items }) => {
+export const DefinitionRecordList: React.FC<DefinitionRecordListProps> = ({
+  items,
+  className = '',
+}) => {
   return (
-    <dl className="print-record-list divide-y divide-[#E2E8F0] border-t border-b border-[#E2E8F0] bg-white">
+    <dl
+      className={`print-record-list divide-y divide-[#E2E8F0] border-t border-b border-[#E2E8F0] bg-white ${className}`}
+    >
       {items.map((item) => (
         <div
           key={item.id}
@@ -15,7 +21,7 @@ export const DefinitionRecordList: React.FC<DefinitionRecordListProps> = ({ item
             item.isPlaceholder ? 'bg-[#FBFBF9]/70' : 'bg-white'
           }`}
         >
-          <dt className="print-record-label sm:col-span-5 text-sm font-medium text-[#334155]">
+          <dt className="print-record-label sm:col-span-5 text-sm font-semibold text-[#1E293B]">
             {item.label}
           </dt>
           <dd className="print-record-value mt-1.5 sm:mt-0 sm:col-span-7 text-base text-[#0B192C] break-words">

@@ -100,6 +100,14 @@ export interface TranslationContent {
     officeHoursLabel: string;
     officeHoursValue: string;
     appointmentNotice: string;
+    chamberHoursLabel: string;
+    chamberHoursValue: string;
+    languagesLabel: string;
+    languagesValue: string;
+    confidentialityNoticeTitle: string;
+    confidentialityNotice: string;
+    viewOnMapLabel: string;
+    mapsUrl: string;
     copyButton: string;
     copiedButton: string;
     copyAddressButton: string;
@@ -195,6 +203,12 @@ export const translations: Record<Language, TranslationContent> = {
           label: 'Primary Location',
           value: 'Gajuwaka, Visakhapatnam, Andhra Pradesh, India',
           secondaryValue: 'PIN: 530026',
+          isPlaceholder: false,
+        },
+        {
+          id: 'languages',
+          label: 'Languages Handled',
+          value: 'Telugu, English, Hindi',
           isPlaceholder: false,
         },
       ],
@@ -328,6 +342,17 @@ export const translations: Record<Language, TranslationContent> = {
       officeHoursValue: 'Monday to Friday, 10:00 AM - 5:00 PM',
       appointmentNotice:
         'Appointment Only: In-person office visits are strictly by prior appointment (subject to court appearance schedules).',
+      chamberHoursLabel: 'Chamber Hours & Availability',
+      chamberHoursValue:
+        'Monday to Saturday: 6:00 PM – 9:00 PM (Prior appointment recommended); Court Hours: 10:30 AM – 4:30 PM',
+      languagesLabel: 'Languages Handled',
+      languagesValue: 'Telugu, English, Hindi',
+      confidentialityNoticeTitle: 'Notice on Confidentiality & Advocate-Client Privilege',
+      confidentialityNotice:
+        'Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship.',
+      viewOnMapLabel: 'View Chamber Location on Google Maps',
+      mapsUrl:
+        'https://maps.google.com/?q=Chinnagantyada,+Gajuwaka,+Visakhapatnam,+Andhra+Pradesh+530026',
       copyButton: 'Copy',
       copiedButton: 'Copied',
       copyAddressButton: 'Copy Address',
@@ -434,6 +459,12 @@ export const translations: Record<Language, TranslationContent> = {
           label: 'ప్రాథమిక ప్రాంతం',
           value: 'గాజువాక, విశాఖపట్నం, ఆంధ్రప్రదేశ్, భారతదేశం',
           secondaryValue: 'పిన్ కోడ్: 530026',
+          isPlaceholder: false,
+        },
+        {
+          id: 'languages',
+          label: 'వ్యవహరించే భాషలు (Languages Handled)',
+          value: 'తెలుగు, ఇంగ్లీష్, హిందీ (Telugu, English, Hindi)',
           isPlaceholder: false,
         },
       ],
@@ -571,6 +602,17 @@ export const translations: Record<Language, TranslationContent> = {
         'సోమవారం నుండి శుక్రవారం వరకు, ఉదయం 10:00 - సాయంత్రం 5:00 (Monday to Friday, 10:00 AM - 5:00 PM)',
       appointmentNotice:
         'ముందస్తు అనుమతి మాత్రమే (Appointment Only): కార్యాలయ సందర్శనలు ముందస్తు అనుమతి ద్వారా మాత్రమే (కోర్టు విచారణ సమయాలకు లోబడి ఉంటుంది).',
+      chamberHoursLabel: 'ఛాంబర్ సమయాలు & లభ్యత (Chamber Hours & Availability)',
+      chamberHoursValue:
+        'సోమవారం నుండి శనివారం వరకు: సాయంత్రం 6:00 – రాత్రి 9:00 (ముందస్తు అపాయింట్‌మెంట్ సిఫార్సు చేయబడింది); కోర్టు సమయాలు: ఉదయం 10:30 – సాయంత్రం 4:30 (Monday to Saturday: 6:00 PM – 9:00 PM; Court Hours: 10:30 AM – 4:30 PM)',
+      languagesLabel: 'వ్యవహరించే భాషలు (Languages Handled)',
+      languagesValue: 'తెలుగు, ఇంగ్లీష్, హిందీ (Telugu, English, Hindi)',
+      confidentialityNoticeTitle: 'గోప్యతా ప్రకటన & న్యాయవాది-కక్షిదారుల హక్కు (Confidentiality & Privilege)',
+      confidentialityNotice:
+        'గోప్యతా ప్రకటన (Notice on Confidentiality): న్యాయవాది-కక్షిదారుల చట్టబద్ధమైన హక్కు ప్రకారం పంచుకోబడిన అన్ని సంప్రదింపులు మరియు పత్రాలు పూర్తిగా గోప్యంగా ఉంచబడతాయి. ముందస్తు అంగీకారం లేకుండా సమాచారాన్ని పంపడం వలన న్యాయవాది-కక్షిదారుల సంబంధం ఏర్పడదు (Notice on Confidentiality: All communications and documents shared are kept strictly confidential under statutory advocate-client privilege. Unsolicited transmission of information does not constitute an engagement or advocate-client relationship).',
+      viewOnMapLabel: 'గూగుల్ మ్యాప్స్‌లో కార్యాలయ స్థానాన్ని చూడండి (View Chamber Location on Google Maps)',
+      mapsUrl:
+        'https://maps.google.com/?q=Chinnagantyada,+Gajuwaka,+Visakhapatnam,+Andhra+Pradesh+530026',
       copyButton: 'కాపీ చేయండి',
       copiedButton: 'కాపీ చేయబడింది',
       copyAddressButton: 'చిరునామా కాపీ చేయండి',
