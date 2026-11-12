@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Check, Menu, Printer, Share2, X } from 'lucide-react';
 import { Language, TranslationContent } from '../data/translations';
+import advocateLogo from '../assets/advocate-logo.png';
 
 interface HeaderProps {
   language: Language;
@@ -105,10 +106,10 @@ export const Header: React.FC<HeaderProps> = ({
           className="inline-flex items-center gap-2.5 min-h-[48px] font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[185px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
         >
           <img
-            src="/advocate-logo.png"
+            src={advocateLogo}
             alt=""
             aria-hidden="true"
-            className="w-7 h-7 object-contain shrink-0 rounded-full"
+            className="w-7 h-7 object-contain shrink-0"
           />
           <span className="truncate">{content.brandName}</span>
         </a>

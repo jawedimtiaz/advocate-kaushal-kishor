@@ -15,6 +15,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { RegulatoryModal } from './components/RegulatoryModal';
 import { FloatingLanguageSwitcher } from './components/FloatingLanguageSwitcher';
+import advocateLogo from './assets/advocate-logo.png';
 
 const LANGUAGE_STORAGE_KEY = 'advocate_kk_language_pref';
 const BCI_DISCLAIMER_STORAGE_KEY = 'bci_disclaimer_accepted';
@@ -287,9 +288,9 @@ export default function App() {
             <div className="print-masthead-header flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E2E8F0]">
               <div className="flex items-start sm:items-center gap-4 sm:gap-5">
                 <img
-                  src="/advocate-logo.png"
+                  src={advocateLogo}
                   alt="Advocate Emblem - Bar Council Professional Insignia"
-                  className="print-masthead-emblem w-14 h-auto sm:w-16 object-contain shrink-0 rounded-full"
+                  className="print-masthead-emblem w-14 h-auto sm:w-16 object-contain shrink-0"
                 />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#785C22]">

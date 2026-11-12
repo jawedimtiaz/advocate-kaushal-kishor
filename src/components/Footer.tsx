@@ -2,6 +2,7 @@ import React from 'react';
 import { Clock, Globe, Mail, MapPin, Phone, Printer, Shield } from 'lucide-react';
 import { TranslationContent } from '../data/translations';
 import { PrivacyPolicyLink } from './PrivacyPolicyLink';
+import advocateLogo from '../assets/advocate-logo.png';
 
 interface FooterProps {
   content: TranslationContent['footer'];
@@ -69,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="md:col-span-6 flex items-center gap-3.5">
             <div className="bg-white rounded-full p-0.5 border border-[#B8964C]/60 shrink-0 no-print">
               <img
-                src="/advocate-logo.png"
+                src={advocateLogo}
                 alt="Advocate Emblem - Bar Council Professional Insignia"
                 className="w-10 h-10 object-contain rounded-full"
               />
