@@ -311,6 +311,16 @@
     border-bottom: 0.75pt solid #CBD5E1 !important;
   }
 
+  .print-masthead-emblem {
+    display: inline-block !important;
+    height: 14mm !important;
+    width: 14mm !important;
+    max-height: 14mm !important;
+    object-fit: contain !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   .print-masthead-meta {
     padding-top: 6pt !important;
     display: flex !important;

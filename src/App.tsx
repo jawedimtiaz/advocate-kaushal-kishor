@@ -285,23 +285,30 @@ export default function App() {
         >
           <div className="print-masthead bg-white border border-[#E2E8F0] p-6 sm:p-10 lg:p-12">
             <div className="print-masthead-header flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E2E8F0]">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#785C22]">
-                  {t.hero.documentType}
-                </p>
-                <h1
-                  id="advocate-identity-heading"
-                  className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0B192C] tracking-tight"
-                  style={{ textWrap: 'balance' }}
-                >
-                  {t.hero.name}
-                </h1>
-                <p className="mt-2 text-lg sm:text-xl font-medium text-[#1E293B]">
-                  {t.hero.qualifications}
-                </p>
-                <p className="mt-1 text-xs sm:text-sm text-[#475569]">
-                  {t.hero.qualificationsFull}
-                </p>
+              <div className="flex items-start sm:items-center gap-4 sm:gap-5">
+                <img
+                  src="/advocate-logo.png"
+                  alt="Advocate Emblem - Bar Council Professional Insignia"
+                  className="print-masthead-emblem w-14 h-auto sm:w-16 object-contain shrink-0 rounded-full"
+                />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#785C22]">
+                    {t.hero.documentType}
+                  </p>
+                  <h1
+                    id="advocate-identity-heading"
+                    className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0B192C] tracking-tight"
+                    style={{ textWrap: 'balance' }}
+                  >
+                    {t.hero.name}
+                  </h1>
+                  <p className="mt-2 text-lg sm:text-xl font-medium text-[#1E293B]">
+                    {t.hero.qualifications}
+                  </p>
+                  <p className="mt-1 text-xs sm:text-sm text-[#475569]">
+                    {t.hero.qualificationsFull}
+                  </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-3.5 no-print">

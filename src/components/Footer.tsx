@@ -66,14 +66,23 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Top Row: Advocate Identity & Factual Contact Particulars */}
         <div className="print-footer-top grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#1E293B]">
-          <div className="md:col-span-6">
-            <h2 className="font-display text-2xl font-semibold text-white tracking-tight">
-              {content.name}
-            </h2>
-            <p className="mt-1.5 text-sm text-[#CBD5E1] flex items-center gap-1.5">
-              <MapPin className="print-footer-icon w-3.5 h-3.5 text-[#D4B46A] print:text-black shrink-0" aria-hidden="true" />
-              <span>{content.location}</span>
-            </p>
+          <div className="md:col-span-6 flex items-center gap-3.5">
+            <div className="bg-white rounded-full p-0.5 border border-[#B8964C]/60 shrink-0 no-print">
+              <img
+                src="/advocate-logo.png"
+                alt="Advocate Emblem - Bar Council Professional Insignia"
+                className="w-10 h-10 object-contain rounded-full"
+              />
+            </div>
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-white tracking-tight">
+                {content.name}
+              </h2>
+              <p className="mt-1.5 text-sm text-[#CBD5E1] flex items-center gap-1.5">
+                <MapPin className="print-footer-icon w-3.5 h-3.5 text-[#D4B46A] print:text-black shrink-0" aria-hidden="true" />
+                <span>{content.location}</span>
+              </p>
+            </div>
           </div>
 
           <div className="md:col-span-6 flex flex-col md:items-end justify-center space-y-1.5 text-sm text-[#CBD5E1]">

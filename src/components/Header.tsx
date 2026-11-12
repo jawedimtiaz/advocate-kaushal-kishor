@@ -98,13 +98,19 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-8">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Zone 1: Single text element wordmark with compact advocate emblem */}
         <a
           href="#top"
           aria-label={`${content.brandName} - ${content.brandQualification}`}
-          className="inline-flex items-center min-h-[48px] font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[155px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
+          className="inline-flex items-center gap-2.5 min-h-[48px] font-display text-lg sm:text-2xl font-semibold tracking-tight text-[#0B192C] whitespace-nowrap shrink-0 truncate max-w-[185px] sm:max-w-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8964C]"
         >
-          {content.brandName}
+          <img
+            src="/advocate-logo.png"
+            alt=""
+            aria-hidden="true"
+            className="w-7 h-7 object-contain shrink-0 rounded-full"
+          />
+          <span className="truncate">{content.brandName}</span>
         </a>
 
         {/* Zone 2: 4 clean single-line text navigation links */}
